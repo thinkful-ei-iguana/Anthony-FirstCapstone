@@ -1,13 +1,12 @@
 import React from "react";
-import "./Styles/Landing.css";
-import Landing from "./Components/Landing/Landing";
-import RecentResults from "../Recent-Results";
+import "../../Styles/Home.css";
+import RecentResults from "../Recent-Results/Recent-Results";
 
-export default class Landing extends React.Component {
+export default class Home extends React.Component {
   render() {
     return (
-      <div class="Landing">
-        <header id="Landing-Header">
+      <div class="Home">
+        <section id="Home-Header">
           <form id="SearchForm">
             <label class="field a-field a-field_a2">
               <input
@@ -20,7 +19,7 @@ export default class Landing extends React.Component {
               </span>
             </label>
           </form>
-        </header>
+        </section>
         <section id="Home-RecentResults">
           <RecentResults />
         </section>

@@ -1,6 +1,6 @@
 import React from "react";
 import "./Styles/App.css";
-import Route from "react-router-dom";
+import { Route } from "react-router-dom";
 import NavMenu from "./Components/Nav-Menu/Nav-Menu";
 import Landing from "./Components/Landing/Landing";
 import Home from "./Components/Home/Home";
@@ -28,7 +28,7 @@ class App extends React.Component {
         </Route>
         <Route
           exact
-          path="/:searchterm"
+          path="/search/:searchterm"
           render={routeProps => {
             return <SearchResults {...routeProps} />;
           }}

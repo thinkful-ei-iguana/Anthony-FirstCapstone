@@ -1,16 +1,23 @@
 import React from "react";
-import "./Styles/Landing.css";
-import Link from "react-router-dom";
-import Landing from "./Components/Landing/Landing";
+import "../../Styles/Landing.css";
+import { Link } from "react-router-dom";
+import PhoneSVG from "../SVGs/PhoneSVG";
 
 export default class Landing extends React.Component {
   render() {
     return (
       <div class="Landing">
-        <header id="Landing-Header">
-          <h1 id="Landing-H1">Logo</h1>
-          <h4 id="Landing-Slogan">quality shopping with a modern twist</h4>
-          <button id="HomeButton">Continue to site</button>
+        <header id="Landing-Header" className="flex-container">
+          <div className="flex-item">
+            <h1 id="Landing-H1">Logo</h1>
+            <h4 id="Landing-Slogan">quality shopping with a modern twist</h4>
+            <Link to="/Home">
+              <button id="Home-Btn">Continue to site</button>
+            </Link>
+          </div>
+          <div className="flex-item">
+            <PhoneSVG />
+          </div>
         </header>
         <section id="Landing-Documentation">
           <div id="FAQ">
@@ -68,13 +75,13 @@ export default class Landing extends React.Component {
           </div>
         </section>
         <section id="Landing-Buttons">
-          <a href="" target="blank_">
+          <a href="https://github.com" target="blank_">
             <i class="fab fa-github"></i>
           </a>
-          <a href="" target="blank_">
+          <a href="https://github.com" target="blank_">
             <i class="fab fa-linkedin-in"></i>
           </a>
-          <a href="" target="blank_">
+          <a href="https://github.com" target="blank_">
             <i class="fas fa-desktop"></i>
           </a>
         </section>
