@@ -12,7 +12,7 @@
   position: absolute;
   right: 0;
   margin-right: 3%;
-  margin-top: 0.4%;
+  margin-top: 1.3%;
 }
 
 #Close-Menu {
@@ -89,8 +89,10 @@
 /* Begin Home Header */
 
 #Nav-Header {
-  background: var(--alt-bg);
-  padding: 10px 10px 10px 10px;
+  background: #f2912b;
+  background: -webkit-linear-gradient(to left, #f2912b, #ffd200);
+  background: linear-gradient(to left, #f2912b, #ffd200);
+  padding: 0px 0px 0px 0px;
   box-shadow: #000 0px -70px 170px 0px;
   position: fixed;
   top: 0;
@@ -102,6 +104,11 @@
 #Nav-Header h1 {
   font-size: calc(10px + 2vmin);
   display: inline;
+}
+
+#Nav-Logo {
+  width: 30%;
+  margin-top: 1%;
 }
 
 /* End Home Header */
@@ -317,4 +324,16 @@ LEVEL 4. SETTINGS
 .field {
   --fieldBorderColor: #767676;
   --fieldBorderColorActive: aqua;
+}
+
+@media only screen and (min-width: 1200px) {
+  #Nav-Logo {
+    width: 15%;
+    margin-top: 0.3%;
+  }
+
+  #Open-Menu {
+    margin-right: 3%;
+    margin-top: 1%;
+  }
 }

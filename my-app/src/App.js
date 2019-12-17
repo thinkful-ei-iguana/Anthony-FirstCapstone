@@ -12,7 +12,7 @@ import SearchResults from "./Components/Search-Results/Search-Results";
 class App extends React.Component {
   render() {
     return (
-      <div class="App">
+      <div className="App">
         <NavMenu />
         <Route exact path="/">
           <Landing />

@@ -2,20 +2,27 @@ import React from "react";
 import "../../Styles/Landing.css";
 import { Link } from "react-router-dom";
 import PhoneSVG from "../SVGs/PhoneSVG";
+import SmartLogo from "../../Assets/smartLogo.png";
 
 export default class Landing extends React.Component {
   render() {
     return (
-      <div class="Landing">
+      <div className="Landing">
         <header id="Landing-Header" className="flex-container">
           <div className="flex-item">
-            <h1 id="Landing-H1">Logo</h1>
+            <img
+              id="Landing-Logo"
+              src={SmartLogo}
+              alt="Smart Marketplace Logo"
+            />
             <h4 id="Landing-Slogan">quality shopping with a modern twist</h4>
-            <Link to="/Home">
-              <button id="Home-Btn">Continue to site</button>
-            </Link>
+            <div id="HomeBtn">
+              <Link id="Home-Btn" to="/Home">
+                Continue to site
+              </Link>
+            </div>
           </div>
-          <div className="flex-item">
+          <div id="SVG" className="flex-item">
             <PhoneSVG />
           </div>
         </header>
@@ -75,15 +82,19 @@ export default class Landing extends React.Component {
           </div>
         </section>
         <section id="Landing-Buttons">
-          <a href="https://github.com" target="blank_">
-            <i class="fab fa-github"></i>
-          </a>
-          <a href="https://github.com" target="blank_">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-          <a href="https://github.com" target="blank_">
-            <i class="fas fa-desktop"></i>
-          </a>
+          <h3 id="Connect-H3">Connect With Me</h3>
+          <hr id="Connect-Divider" />
+          <div id="buttons">
+            <a href="https://github.com" target="blank_">
+              <i className="fab fa-github"></i>
+            </a>
+            <a href="https://github.com" target="blank_">
+              <i className="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com" target="blank_">
+              <i className="fas fa-desktop"></i>
+            </a>
+          </div>
         </section>
       </div>
     );

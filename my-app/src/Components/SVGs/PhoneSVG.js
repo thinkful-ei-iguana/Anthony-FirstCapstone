@@ -2,23 +2,6 @@ import React from "react";
 import Lottie from "react-lottie";
 
 export default class Icon extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      height: "",
-      width: ""
-    };
-  }
-
-  componentDidMount() {
-    if (window.innerWidth < 768) {
-      this.setState({ height: 281.25, width: 500 });
-    } else if (window.innerWidth >= 768 && window.innerWidth < 1200) {
-      this.setState({ height: 506.25, width: 900 });
-    } else if (window.innerWidth > 1200) {
-      this.setState({ height: 618.75, width: 1100 });
-    }
-  }
 
   render() {
     console.log(this.state);
@@ -9108,8 +9091,8 @@ export default class Icon extends React.Component {
             preserveAspectRatio: "xMidYMid slice"
           }
         }}
-        height={this.state.height}
-        width={this.state.width}
+        height={'auto'}
+        width={'100%'}
       />
     );
   }
