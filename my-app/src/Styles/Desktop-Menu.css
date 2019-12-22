@@ -1,0 +1,36 @@
+.desktopMenu form {
+  display: inline-block;
+}
+
+.DarkMode {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.desktopMenu {
+  display: inline;
+  position: absolute;
+  right: 0;
+}
+
+.desktopMenu form button {
+  border: 0;
+  background: transparent;
+}
+
+.DarkMode i {
+  font-size: calc(2px + 2vmin);
+}
+
+.desktopMenu a {
+  display: inline-block;
+}
+
+.Desktop-Menu-UserSearchForm label,
+.Desktop-Menu-UserSearchForm input {
+  display: inline-block;
+}
+
+.desktopMenu * {
+  margin-left: 20px;
+}
