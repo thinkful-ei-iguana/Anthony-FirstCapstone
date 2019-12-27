@@ -1,36 +1,67 @@
-.desktopMenu form {
-  display: inline-block;
-}
+@media only screen and (min-width: 1200px) {
+  .desktopMenu form {
+    display: inline-block;
+  }
 
-.DarkMode {
-  display: inline-block;
-  margin-right: 20px;
-}
+  .DarkMode {
+    display: inline-block;
+    margin-right: 20px;
+  }
 
-.desktopMenu {
-  display: inline;
-  position: absolute;
-  right: 0;
-}
+  .desktopMenu {
+    display: inline;
+    position: absolute;
+    right: 0;
+  }
 
-.desktopMenu form button {
-  border: 0;
-  background: transparent;
-}
+  .desktopMenu form button {
+    border: 0;
+    background: transparent;
+  }
 
-.DarkMode i {
-  font-size: calc(2px + 2vmin);
-}
+  .DarkMode i {
+    font-size: calc(2px + 2vmin);
+  }
 
-.desktopMenu a {
-  display: inline-block;
-}
+  .desktopMenu a {
+    display: inline-block;
+  }
 
-.Desktop-Menu-UserSearchForm label,
-.Desktop-Menu-UserSearchForm input {
-  display: inline-block;
-}
+  .Desktop-Menu-UserSearchForm label,
+  .Desktop-Menu-UserSearchForm input {
+    display: inline-block;
+  }
 
-.desktopMenu * {
-  margin-left: 20px;
+  .desktopMenu * {
+    margin-left: 20px;
+  }
+
+  .Nav-Logo {
+    width: 15%;
+    margin-top: 0.3%;
+  }
+
+  #Open-Menu {
+    margin-right: 3%;
+    margin-top: 1%;
+  }
+
+  .Nav-Header {
+    background: #f2912b;
+    background: -webkit-linear-gradient(to left, #f2912b, #ffd200);
+    background: linear-gradient(to left, #f2912b, #ffd200);
+    padding: 0px 0px 0px 0px;
+    box-shadow: #000 0px -70px 170px 0px;
+    position: fixed;
+    height: 60px;
+    border-radius: 0;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+  }
+
+  #Nav-Header h1 {
+    font-size: calc(10px + 2vmin);
+    display: inline;
+  }
 }

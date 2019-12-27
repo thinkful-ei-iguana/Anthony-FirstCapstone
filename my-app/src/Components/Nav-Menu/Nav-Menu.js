@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../../Styles/Nav-Menu.css";
 import SmartLogoNav from "../../Assets/smartLogoNav.png";
 import MobileMenu from "../Menus/Mobile-Menu";
@@ -16,17 +17,13 @@ export default class NavMenu extends React.Component {
     super(props);
     this.state = {
       open: false,
-      LightModeIcon: "far fa-lightbulb"
+      isLight: true
     };
   }
 
   toggleLightMode = () => {
-    if (this.state.LightModeIcon === "far fa-lightbulb") {
-      this.setState({ LightModeIcon: "far fa-moon" });
-    } else {
-      this.setState({ LightModeIcon: "far fa-lightbulb" });
-    }
-    console.log(this.state.LightModeIcon);
+    this.setState(prevState => ({ isLight: !prevState.isLight }));
+    console.log(this.state.isLight);
   };
 
   toggleMenu = () => {
@@ -38,10 +35,19 @@ export default class NavMenu extends React.Component {
     console.log("open status", this.state.open);
     return (
       <header className="Nav-Header">
-        <img id="Nav-Logo" src={SmartLogoNav} alt="Smart Marketplace Logo" />
+        <Link to="/Home">
+          <img
+            className="Nav-Logo"
+            src={SmartLogoNav}
+            alt="Smart Marketplace Logo"
+          />
+        </Link>
+        <button className="Open-Menu" onClick={this.toggleMenu}>
+          <i className="fas fa-bars"></i>
+        </button>
         {isMobile() ? (
           <MobileMenu
-            className={this.state.open ? "is-open" : "is-closed"}
+            id="MobileMenu"
             state={this.state}
             mobileToggle={this.toggleMenu}
             LightMode={this.toggleLightMode}

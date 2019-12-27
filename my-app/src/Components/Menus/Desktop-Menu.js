@@ -4,6 +4,9 @@ import "../../Styles/Desktop-Menu.css";
 
 export default class DesktopMenu extends React.Component {
   render() {
+    const LightModeToggle = this.props.state.isLight
+      ? "far fa-moon fa-fw"
+      : "far fa-lightbulb fa-fw";
     return (
       <div className="desktopMenu">
         <Link to="Login">Login</Link>
@@ -23,7 +26,7 @@ export default class DesktopMenu extends React.Component {
         </form>
         <div className="DarkMode">
           <button className="LightModeToggle" onClick={this.props.LightMode}>
-            <i className={this.props.state.LightModeIcon}></i>
+            <i className={LightModeToggle}></i>
           </button>
         </div>
       </div>

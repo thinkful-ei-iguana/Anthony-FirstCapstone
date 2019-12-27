@@ -18,5 +18,6 @@ Location TEXT NOT NULL,
 Date DATE NOT NULL,
 Condition TEXT NOT NULL,
 Price TEXT NOT NULL,
-Description TEXT NOT NULL
+Description TEXT NOT NULL,
+Image TEXT NOT NULL
 );
