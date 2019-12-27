@@ -20,7 +20,7 @@ export default class Home extends React.Component {
             </label>
           </form>
         </section>
-        <section id="Home-RecentResults">
+        <section className="Home-RecentResults">
           <RecentResults />
         </section>
       </div>

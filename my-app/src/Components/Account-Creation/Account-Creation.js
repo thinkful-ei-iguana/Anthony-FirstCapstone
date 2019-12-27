@@ -7,17 +7,34 @@ export default class Login extends React.Component {
     onLoginSuccess: () => {}
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   createSubmit = e => {
     e.preventDefault();
     this.setState({ error: null });
-    const { user_name, password } = e.target;
+    const { name, email, location, user_name, password } = e.target;
+    console.log(
+      "name:",
+      name.value,
+      "email:",
+      email.value,
+      "location:",
+      location.value,
+      "user_name:",
+      user_name.value,
+      "password:",
+      password.value
+    );
   };
 
   render() {
     return (
-      <div className="Login">
-        <header className="Login-Header"></header>
-        <form className="Login-Form" onSubmit={this.createSubmit}>
+      <div className="Creation">
+        <header className="Creation-Header"></header>
+        <form className="Creation-Form" onSubmit={this.createSubmit}>
           <label className="field a-field a-field_a2">
             <input
               className="field__input a-field__input"
@@ -33,6 +50,7 @@ export default class Login extends React.Component {
             <input
               className="field__input a-field__input"
               required
+              type="email"
               name="email"
               placeholder="Email"
             />

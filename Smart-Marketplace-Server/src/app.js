@@ -8,13 +8,14 @@ const app = express();
 const morganOption = NODE_ENV === "production" ? "tiny" : "common";
 const logger = require("./logger");
 const listingRouter = require("./listing-router");
+const accountRouter = require("./account-router");
 
 app.use(morgan(morganOption));
 app.use(helmet());
 app.use(cors());
 app.use(express());
 
-app.use(function validateBearerToken(req, res, next) {
+function validateBearerToken(req, res, next) {
   const apiToken = process.env.API_TOKEN;
   const authToken = req.get("Authorization");
 
@@ -23,9 +24,10 @@ app.use(function validateBearerToken(req, res, next) {
     return res.status(401).json({ error: "Unauthorized Access" });
   }
   next();
-});
+}
 
-app.use(listingRouter);
+app.use("/api/listings", listingRouter, validateBearerToken());
+app.use("/api/accounts", accountRouter);
 
 app.use(function errorHandler(error, req, res, next) {
   let response;
