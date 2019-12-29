@@ -1,7 +1,7 @@
-import React from "react";
-import config from "../config";
-import Listing from "../Listing/Listing";
-import "../../Styles/Recent-Results.css";
+import React from 'react';
+import config from '../config';
+import Listing from '../Listing/Listing';
+import '../../Styles/Recent-Results.css';
 
 export default class RecentResults extends React.Component {
   constructor(props) {
@@ -13,9 +13,9 @@ export default class RecentResults extends React.Component {
 
   componentDidMount() {
     fetch(`${config.API_ENDPOINT}listings`, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
         Authorization: `Bearer ${config.API_TOKEN}`
       }
     })
@@ -26,8 +26,8 @@ export default class RecentResults extends React.Component {
   render() {
     console.log(this.state);
     return (
-      <div className="RecentResults">
-        <section className="flex-container">
+      <div className='RecentResults'>
+        <section className='flex-container'>
           {this.state.listings.map(listing => (
             <Listing key={listing.id} {...listing} />
           ))}

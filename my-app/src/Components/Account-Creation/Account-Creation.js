@@ -1,101 +1,107 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "../../Styles/Account-Creation.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Auth from '../../Helpers/Auth';
+import '../../Styles/Account-Creation.css';
 
 export default class Login extends React.Component {
-  static defaultProps = {
-    onLoginSuccess: () => {}
+  handleRegistrationSuccess = user => {
+    const { history } = this.props;
+    history.push('/login');
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+  state = { error: null };
 
-  createSubmit = e => {
-    e.preventDefault();
+  createSubmit = ev => {
+    ev.preventDefault();
+    const { name, email, location, username, password } = ev.target;
+
     this.setState({ error: null });
-    const { name, email, location, user_name, password } = e.target;
-    console.log(
-      "name:",
-      name.value,
-      "email:",
-      email.value,
-      "location:",
-      location.value,
-      "user_name:",
-      user_name.value,
-      "password:",
-      password.value
-    );
+    Auth.createAccount({
+      name: name.value,
+      email: email.value,
+      location: location.value,
+      username: username.value,
+      password: password.value
+    })
+      .then(user => {
+        name.value = '';
+        email.value = '';
+        location.value = '';
+        username.value = '';
+        password.value = '';
+        this.handleRegistrationSuccess();
+      })
+      .catch(res => {
+        this.setState({ error: res.error });
+      });
   };
 
   render() {
     return (
-      <div className="Creation">
-        <header className="Creation-Header"></header>
-        <form className="Creation-Form" onSubmit={this.createSubmit}>
-          <label className="field a-field a-field_a2">
+      <div className='Creation'>
+        <header className='Creation-Header'></header>
+        <form className='Creation-Form' onSubmit={this.createSubmit}>
+          <label className='field a-field a-field_a2'>
             <input
-              className="field__input a-field__input"
+              className='field__input a-field__input'
               required
-              name="name"
-              placeholder="Name"
+              name='name'
+              placeholder='Name'
             />
-            <span className="a-field__label-wrap">
-              <span className="a-field__label">Name</span>
+            <span className='a-field__label-wrap'>
+              <span className='a-field__label'>Name</span>
             </span>
           </label>
-          <label className="field a-field a-field_a2">
+          <label className='field a-field a-field_a2'>
             <input
-              className="field__input a-field__input"
+              className='field__input a-field__input'
               required
-              type="email"
-              name="email"
-              placeholder="Email"
+              type='email'
+              name='email'
+              placeholder='Email'
             />
-            <span className="a-field__label-wrap">
-              <span className="a-field__label">Email</span>
+            <span className='a-field__label-wrap'>
+              <span className='a-field__label'>Email</span>
             </span>
           </label>
-          <label className="field a-field a-field_a2">
+          <label className='field a-field a-field_a2'>
             <input
-              className="field__input a-field__input"
+              className='field__input a-field__input'
               required
-              name="location"
-              placeholder="Location"
+              name='location'
+              placeholder='Location'
             />
-            <span className="a-field__label-wrap">
-              <span className="a-field__label">Location</span>
+            <span className='a-field__label-wrap'>
+              <span className='a-field__label'>Location</span>
             </span>
           </label>
-          <label className="field a-field a-field_a2">
+          <label className='field a-field a-field_a2'>
             <input
-              className="field__input a-field__input"
+              className='field__input a-field__input'
               required
-              name="user_name"
-              placeholder="Username"
+              name='username'
+              placeholder='Username'
             />
-            <span className="a-field__label-wrap">
-              <span className="a-field__label">Username</span>
+            <span className='a-field__label-wrap'>
+              <span className='a-field__label'>Username</span>
             </span>
           </label>
-          <label className="field a-field a-field_a2">
+          <label className='field a-field a-field_a2'>
             <input
-              className="field__input a-field__input"
+              className='field__input a-field__input'
               required
-              name="password"
-              type="password"
-              placeholder="Password"
+              name='password'
+              type='password'
+              placeholder='Password'
             />
-            <span className="a-field__label-wrap">
-              <span className="a-field__label">Password</span>
+            <span className='a-field__label-wrap'>
+              <span className='a-field__label'>Password</span>
             </span>
           </label>
-          <div className="btn-row">
-            <button className="submitLogin">Create</button>
-            <Link to="/Login">
-              <button className="newAccount">Have an account?</button>
+          <div className='btn-row'>
+            <button className='submitLogin'>Create</button>
+            <Link to='/Login'>
+              <button className='newAccount'>Have an account?</button>
             </Link>
           </div>
         </form>
