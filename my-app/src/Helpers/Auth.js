@@ -12,7 +12,7 @@ const AuthHelper = {
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
   },
-  postLogin(credentials) {
+  login(credentials) {
     return fetch(`${config.API_ENDPOINT}/auth/login`, {
       method: 'POST',
       headers: {

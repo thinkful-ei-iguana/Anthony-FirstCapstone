@@ -9,6 +9,7 @@ const morganOption = NODE_ENV === 'production' ? 'tiny' : 'common';
 const logger = require('./logger');
 const listingRouter = require('./Routers/listing-router');
 const accountRouter = require('./Routers/account-router');
+const authRouter = require('./Auth/Auth-Router');
 
 app.use(morgan(morganOption));
 app.use(helmet());
@@ -28,6 +29,7 @@ app.use(function errorHandler(error, req, res, next) {
 
 app.use('/api/listings', listingRouter);
 app.use('/api/accounts', accountRouter);
+app.use('/api/auth', authRouter);
 
 app.get('/api/', (req, res) => {
   res.send('Hello, world!');

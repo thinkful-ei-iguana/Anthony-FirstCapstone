@@ -1,27 +1,29 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "../../Styles/Account-Login.css";
-import AuthHelper from "../../Helpers/Auth";
-import TokenHelper from "../../Helpers/Token";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import '../../Styles/Account-Login.css';
+import AuthHelper from '../../Helpers/Auth';
+import TokenHelper from '../../Helpers/Token';
 
 export default class Login extends React.Component {
-  static defaultProps = {
-    onLoginSuccess: () => {}
+  handleLoginSuccess = () => {
+    const { location, history } = this.props;
+    const destination = (location.state || {}).from || '/';
+    history.push(destination);
   };
 
   loginSubmit = e => {
     e.preventDefault();
     this.setState({ error: null });
-    const { user_name, password } = e.target;
-    AuthHelper.postLogin({
-      user_name: user_name.value,
+    const { username, password } = e.target;
+    AuthHelper.login({
+      username: username.value,
       password: password.value
     })
       .then(res => {
-        user_name.value = "";
-        password.value = "";
+        username.value = '';
+        password.value = '';
         TokenHelper.saveAuthToken(res.authToken);
-        this.props.onLoginSuccess();
+        this.onLoginSuccess();
       })
       .catch(res => {
         this.setState({ error: res.error });
@@ -30,36 +32,36 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <div className="Login">
-        <header className="Login-Header"></header>
-        <form className="Login-Form" onSubmit={this.loginSubmit}>
-          <label className="field a-field a-field_a2">
+      <div className='Login'>
+        <header className='Login-Header'></header>
+        <form className='Login-Form' onSubmit={this.loginSubmit}>
+          <label className='field a-field a-field_a2'>
             <input
-              className="field__input a-field__input"
+              className='field__input a-field__input'
               required
-              name="user_name"
-              placeholder="Username"
+              name='username'
+              placeholder='Username'
             />
-            <span className="a-field__label-wrap">
-              <span className="a-field__label">Username</span>
+            <span className='a-field__label-wrap'>
+              <span className='a-field__label'>Username</span>
             </span>
           </label>
-          <label className="field a-field a-field_a2">
+          <label className='field a-field a-field_a2'>
             <input
-              className="field__input a-field__input"
+              className='field__input a-field__input'
               required
-              name="password"
-              type="password"
-              placeholder="Password"
+              name='password'
+              type='password'
+              placeholder='Password'
             />
-            <span className="a-field__label-wrap">
-              <span className="a-field__label">Password</span>
+            <span className='a-field__label-wrap'>
+              <span className='a-field__label'>Password</span>
             </span>
           </label>
-          <div className="btn-row">
-            <button className="submitLogin">Login</button>
-            <Link to="/Create-Account">
-              <button className="newAccount">Don't have an account?</button>
+          <div className='btn-row'>
+            <button className='submitLogin'>Login</button>
+            <Link to='/Create-Account'>
+              <button className='newAccount'>Don't have an account?</button>
             </Link>
           </div>
         </form>
