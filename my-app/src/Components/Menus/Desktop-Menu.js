@@ -1,24 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../Styles/Desktop-Menu.css';
-import TokenService from '../../Helpers/Token';
+import Context from '../Context/Context';
 
 export default class DesktopMenu extends React.Component {
-  // componentDidMount() {
-  //   if (this.state.hasToken === true) {
-  //     this.setState({ hasToken: true });
-  //   } else {
-  //     this.setState({ hasToken: false });
-  //   }
-  // }
+  static contextType = Context;
 
   render() {
-    const LightModeToggle = this.props.state.isLight
+    const LightModeToggle = this.context.isLight
       ? 'far fa-moon fa-fw'
       : 'far fa-lightbulb fa-fw';
     return (
       <div className='desktopMenu'>
-        {this.props.state.hasToken
+        {this.context.hasToken
           ? this.props.renderLogoutLink()
           : this.props.renderLoginLink()}
         <form className='Desktop-Menu-UserSearchForm'>
@@ -35,7 +29,7 @@ export default class DesktopMenu extends React.Component {
           <button type='submit'>search</button>
         </form>
         <div className='DarkMode'>
-          <button className='LightModeToggle' onClick={this.props.LightMode}>
+          <button className='LightModeToggle' onClick={this.context.LightMode}>
             <i className={LightModeToggle}></i>
           </button>
         </div>

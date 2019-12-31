@@ -5,6 +5,7 @@ import SmartLogoNav from '../../Assets/smartLogoNav.png';
 import MobileMenu from '../Menus/Mobile-Menu';
 import DesktopMenu from '../Menus/Desktop-Menu';
 import TokenHelper from '../../Helpers/Token';
+import Context from '../Context/Context';
 
 function isMobile() {
   if (window.innerWidth < 1200) {
@@ -14,28 +15,14 @@ function isMobile() {
 }
 
 export default class NavMenu extends React.Component {
+  static contextType = Context;
+
   constructor(props) {
     super(props);
     this.state = {
-      open: false,
-      isLight: true,
-      hasToken: TokenHelper.hasAuthToken()
+      open: false
     };
   }
-
-  handleHasToken = () => {
-    console.log('handle worked');
-    this.setState({
-      hasToken: TokenHelper.hasAuthToken()
-    });
-    console.log(this.state.hasToken);
-  };
-
-  toggleLightMode = () => {
-    this.setState(prevState => ({
-      isLight: !prevState.isLight
-    }));
-  };
 
   toggleMenu = () => {
     this.setState(prevState => ({ open: !prevState.open }));
@@ -54,7 +41,7 @@ export default class NavMenu extends React.Component {
     return (
       <div className='Header__logged-in'>
         <Link to='/user/:username'>Username</Link>
-        <Link onClick={TokenHelper.clearAuthToken} to='/Home'>
+        <Link onClick={this.context.clearAuthToken} to='/Home'>
           Logout
         </Link>
       </div>
@@ -62,6 +49,7 @@ export default class NavMenu extends React.Component {
   }
 
   render() {
+    console.log(this.context.hasAuthToken());
     return (
       <header className='Nav-Header'>
         <Link to='/Home'>
@@ -79,7 +67,6 @@ export default class NavMenu extends React.Component {
             id='MobileMenu'
             state={this.state}
             mobileToggle={this.toggleMenu}
-            LightMode={this.toggleLightMode}
             renderLoginLink={this.renderLoginLink}
             renderLogoutLink={this.renderLogoutLink}
           />

@@ -33,7 +33,7 @@ const AuthHelper = {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        return data.dbUser;
       });
   }
   // delete user

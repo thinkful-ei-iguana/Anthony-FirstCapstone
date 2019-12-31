@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../Styles/Account-Login.css';
 import AuthHelper from '../../Helpers/Auth';
-import TokenHelper from '../../Helpers/Token';
+import Context from '../Context/Context';
 
 export default class Login extends React.Component {
+  static contextType = Context;
   static defaultProps = {
     location: {},
     history: {
@@ -33,7 +34,7 @@ export default class Login extends React.Component {
       .then(res => {
         username.value = '';
         password.value = '';
-        TokenHelper.saveAuthToken(res.authToken);
+        this.context.saveAuthToken(res.authToken);
         this.onLoginSuccess();
       })
       .catch(res => {
