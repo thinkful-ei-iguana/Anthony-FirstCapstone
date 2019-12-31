@@ -7,7 +7,7 @@ export default class DesktopMenu extends React.Component {
   static contextType = Context;
 
   render() {
-    console.log(this.context.hasUser);
+    console.log(this.context.isLoggedIn);
     const LightModeToggle = this.context.isLight
       ? 'far fa-moon fa-fw'
       : 'far fa-lightbulb fa-fw';
@@ -16,7 +16,7 @@ export default class DesktopMenu extends React.Component {
         {this.context.isLoggedIn ? (
           <div className='Header__logged-in'>
             <Link to='/user/:username'>Username</Link>
-            <Link onClick={this.context.clearAuthToken} to='/Home'>
+            <Link onClick={this.context.onLogout} to='/Home'>
               Logout
             </Link>
           </div>
