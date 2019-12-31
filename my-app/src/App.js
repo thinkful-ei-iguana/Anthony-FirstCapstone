@@ -81,14 +81,27 @@ class App extends React.Component {
           lightMode: this.toggleLightMode
         }}
       >
+        {' '}
         <div className='App'>
-          <NavMenu />
-          <Route exact path='/'>
-            <Landing />
-          </Route>
-          <Route exact path='/Home'>
-            <Home />
-          </Route>
+          <Context.Consumer>
+            <NavMenu />
+          </Context.Consumer>
+          <Route
+            exact
+            path='/'
+            render={routeProps => {
+              return <Landing {...routeProps} />;
+            }}
+          />
+          <Context.Consumer>
+            <Route
+              exact
+              path='/Home'
+              render={routeProps => {
+                return <Home {...routeProps} />;
+              }}
+            />
+          </Context.Consumer>
           <Route
             exact
             path='/Login'
@@ -96,9 +109,13 @@ class App extends React.Component {
               return <AccountLogin {...routeProps} />;
             }}
           />
-          <Route exact path='/Create-Account'>
-            <AccountCreation />
-          </Route>
+          <Route
+            exact
+            path='/Create-Account'
+            render={routeProps => {
+              return <AccountCreation {...routeProps} />;
+            }}
+          />
           <Route
             exact
             path='/search/:searchterm'
