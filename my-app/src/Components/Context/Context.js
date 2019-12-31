@@ -1,14 +1,21 @@
 import React from 'react';
+import config from './config';
 
-const Context = React.createContext({
-  currentUser: '',
-  hasToken: '',
-  lightMode: () => {},
-  saveAuthToken: () => {},
-  getAuthToken: () => {},
-  clearAuthToken: () => {},
-  hasAuthToken: () => {},
-  makeBasicAuthToken: () => {}
-});
+export const contextState = {
+  saveAuthToken = (token) => {
+    window.localStorage.setItem(config.TOKEN_KEY, token);
+  },
+  getAuthToken = () => {
+    return window.localStorage.getItem(config.TOKEN_KEY);
+  },
+  hasAuthToken = () => {
+    return !!this.getAuthToken();
+  },
+  makeBasicAuthToken = (userName, password) => {
+    return window.btoa(`${userName}:${password}`);
+  }
+};
+
+const Context = React.createContext(contextState);
 
 export default Context;

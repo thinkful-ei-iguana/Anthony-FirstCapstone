@@ -9,41 +9,40 @@ import AccountLogin from './Components/Account-Login/Account-Login';
 import DetailedView from './Components/Detailed-View/Detailed-View';
 import SearchResults from './Components/Search-Results/Search-Results';
 import AuthHelper from './Helpers/Auth';
-import TokenHelper from './Helpers/Token';
-import Context from './Components/Context/Context';
+import Context, { contextState } from './Components/Context/Context';
 import config from './config';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: {
-        name: '',
-        username: '',
-        location: '',
-        email: '',
-        date_created: ''
-      },
+      contextState,
+      currentUser: {},
+      isLoggedIn: false,
       isLight: true,
-      hasToken: this.hasAuthToken()
+      hasToken: this.state.hasAuthToken()
     };
   }
 
   componentDidMount() {
     if (this.hasAuthToken()) {
-      AuthHelper.getCurrentUser(this.getAuthToken()).then(data =>
-        this.setState({
-          currentUser: {
-            name: data.name,
-            username: data.username,
-            location: data.location,
-            email: data.email,
-            date_created: data.date_created
-          }
-        })
+      AuthHelper.getCurrentUser(this.state.getAuthToken()).then(data =>
+        this.setState(prevState => ({
+          currentUser: data,
+          isLoggedIn: !prevState.isLoggedIn
+        }))
       );
     }
   }
+
+  onLogin = () => {
+    this.setState({ currentUser: currentUser, isLoggedIn: true });
+  };
+
+  onLogout = () => {
+    window.localStorage.removeItem(config.TOKEN_KEY);
+    this.setState({ currentUser: {}, isLoggedIn: false });
+  };
 
   toggleLightMode = () => {
     this.setState(prevState => ({
@@ -51,41 +50,27 @@ class App extends React.Component {
     }));
   };
 
-  saveAuthToken(token) {
-    window.localStorage.setItem(config.TOKEN_KEY, token);
-  }
-  getAuthToken() {
-    return window.localStorage.getItem(config.TOKEN_KEY);
-  }
-  clearAuthToken() {
-    window.localStorage.removeItem(config.TOKEN_KEY);
-  }
-  hasAuthToken() {
-    return !!this.getAuthToken();
-  }
-  makeBasicAuthToken(userName, password) {
-    return window.btoa(`${userName}:${password}`);
-  }
-
   render() {
+    console.log(this.state);
     return (
       <Context.Provider
         value={{
           currentUser: this.state.currentUser,
           hasToken: this.state.hasToken,
+          isLoggedIn: this.state.isLoggedIn,
           saveAuthToken: this.saveAuthToken,
           getAuthToken: this.getAuthToken,
           clearAuthToken: this.clearAuthToken,
           hasAuthToken: this.hasAuthToken,
           makeBasicAuthToken: this.makeBasicAuthToken,
-          lightMode: this.toggleLightMode
+          lightMode: this.toggleLightMode,
+          hasUser: this.hasUser
         }}
       >
         {' '}
         <div className='App'>
-          <Context.Consumer>
-            <NavMenu />
-          </Context.Consumer>
+          <NavMenu />
+
           <Route
             exact
             path='/'
@@ -93,15 +78,14 @@ class App extends React.Component {
               return <Landing {...routeProps} />;
             }}
           />
-          <Context.Consumer>
-            <Route
-              exact
-              path='/Home'
-              render={routeProps => {
-                return <Home {...routeProps} />;
-              }}
-            />
-          </Context.Consumer>
+
+          <Route
+            exact
+            path='/Home'
+            render={routeProps => {
+              return <Home {...routeProps} />;
+            }}
+          />
           <Route
             exact
             path='/Login'

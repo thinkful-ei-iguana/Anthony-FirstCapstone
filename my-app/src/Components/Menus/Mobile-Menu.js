@@ -20,9 +20,9 @@ export default class DesktopMenu extends React.Component {
           </button>
           <div id='Inner-Container'>
             <div id='Account-Options'>
-              {TokenService.hasAuthToken()
+              {/* {TokenService.hasAuthToken()
                 ? this.props.renderLogoutLink()
-                : this.props.renderLoginLink()}
+                : this.props.renderLoginLink()} */}
             </div>
             <form id='Mobile-Menu-UserSearchForm'>
               <label className='field a-field a-field_a2'>

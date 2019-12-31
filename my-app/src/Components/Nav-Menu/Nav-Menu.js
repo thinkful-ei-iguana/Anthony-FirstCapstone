@@ -28,28 +28,7 @@ export default class NavMenu extends React.Component {
     this.setState(prevState => ({ open: !prevState.open }));
   };
 
-  renderLoginLink() {
-    return (
-      <div className='Header__logged-out'>
-        <Link to='/login'>Log in</Link>
-        <Link to='/create-account'>Register</Link>
-      </div>
-    );
-  }
-
-  renderLogoutLink() {
-    return (
-      <div className='Header__logged-in'>
-        <Link to='/user/:username'>Username</Link>
-        <Link onClick={this.context.clearAuthToken} to='/Home'>
-          Logout
-        </Link>
-      </div>
-    );
-  }
-
   render() {
-    console.log(this.context.hasAuthToken());
     return (
       <header className='Nav-Header'>
         <Link to='/Home'>
