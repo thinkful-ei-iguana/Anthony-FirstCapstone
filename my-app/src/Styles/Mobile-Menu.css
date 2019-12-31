@@ -5,6 +5,14 @@
 
 /* Begin Nav Menu */
 
+.Header__is-logged-in {
+  display: inline-block;
+}
+
+.Header__is-logged-out {
+  display: inline-block;
+}
+
 .Open-Menu {
   padding: 0;
   background: transparent;
@@ -243,7 +251,7 @@ LEVEL 3. PRESENTATION STYLES
 /* a-field_a2 */
 
 .a-field_a2 .a-field__label-wrap::after {
-  content: "";
+  content: '';
   box-sizing: border-box;
   width: 0;
   height: var(--uiFieldBorderWidth);
@@ -266,7 +274,7 @@ LEVEL 3. PRESENTATION STYLES
 }
 
 .a-field_a3 .a-field__label-wrap::after {
-  content: "";
+  content: '';
   box-sizing: border-box;
   width: 100%;
   height: 0;

@@ -24,7 +24,6 @@ export default class RecentResults extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className='RecentResults'>
         <section className='flex-container'>

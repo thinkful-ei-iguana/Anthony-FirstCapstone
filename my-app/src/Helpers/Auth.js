@@ -22,7 +22,21 @@ const AuthHelper = {
     }).then(res => {
       return !res.ok ? res.json().then(e => Promise.reject(e)) : res.json();
     });
+  },
+  getCurrentUser(token) {
+    return fetch(`${config.API_ENDPOINT}/accounts`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      });
   }
+  // delete user
 };
 
 export default AuthHelper;

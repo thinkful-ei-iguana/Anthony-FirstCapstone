@@ -4,6 +4,13 @@ import Auth from '../../Helpers/Auth';
 import '../../Styles/Account-Creation.css';
 
 export default class Login extends React.Component {
+  static defaultProps = {
+    location: {},
+    history: {
+      push: () => {}
+    }
+  };
+
   handleRegistrationSuccess = user => {
     const { history } = this.props;
     history.push('/login');

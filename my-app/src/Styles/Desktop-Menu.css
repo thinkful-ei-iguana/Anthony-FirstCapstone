@@ -3,6 +3,14 @@
     display: inline-block;
   }
 
+  .Header__logged-in {
+    display: inline-block;
+  }
+
+  .Header__logged-out {
+    display: inline-block;
+  }
+
   .DarkMode {
     display: inline-block;
     margin-right: 20px;

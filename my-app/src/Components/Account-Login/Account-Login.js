@@ -5,10 +5,21 @@ import AuthHelper from '../../Helpers/Auth';
 import TokenHelper from '../../Helpers/Token';
 
 export default class Login extends React.Component {
-  handleLoginSuccess = () => {
+  static defaultProps = {
+    location: {},
+    history: {
+      push: () => {}
+    }
+  };
+
+  state = { error: null };
+
+  onLoginSuccess = () => {
+    console.log('success');
     const { location, history } = this.props;
-    const destination = (location.state || {}).from || '/';
+    const destination = (location.state || {}).from || '/Home';
     history.push(destination);
+    console.log(destination);
   };
 
   loginSubmit = e => {
