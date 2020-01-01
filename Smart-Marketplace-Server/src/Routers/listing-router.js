@@ -29,8 +29,11 @@ listingRouter
         res.json({
           id: listing.id,
           title: listing.title,
-          url: xss(listing.url),
-          rating: listing.rating,
+          condition: xss(listing.condtion),
+          price: listing.price,
+          date_created: listing.date_created,
+          owner: listing.owner,
+          image: listing.image,
           description: xss(listing.description)
         });
       })
@@ -42,7 +45,7 @@ listingRouter
     MarketplaceService.deleteListing(knexInstance, id)
       .then(listing => {
         if (listing === -1) {
-          logger.error(`Card with id ${id} not found`);
+          logger.error(`Listing with id ${id} not found`);
           return res.status(404).send('Listing not found');
         }
         logger.info(`Listing with id ${id} has been deleted`);
@@ -52,25 +55,58 @@ listingRouter
   });
 
 listingRouter.route('/').post(bodyParser, (req, res, next) => {
-  const { title, url, rating, description } = req.body;
+  const {
+    title,
+    price,
+    owner,
+    image,
+    location,
+    condition,
+    date_created,
+    description
+  } = req.body;
 
   if (!title) {
     logger.error('Title is required');
     return res.status(400).send('Title required');
   }
-  if (!url) {
-    logger.error('Url is required');
-    return res.status(400).send('Url required');
+  if (!price) {
+    logger.error('Price is required');
+    return res.status(400).send('Price required');
   }
-  if (!rating) {
-    logger.error('Rating is required');
-    return res.status(400).send('Rating required');
+  if (!owner) {
+    logger.error('Owner is required');
+    return res.status(400).send('Owner required');
+  }
+  if (!location) {
+    logger.error('Location is required');
+    return res.status(400).send('Location required');
+  }
+  if (!image) {
+    logger.error('Image is required');
+    return res.status(400).send('Image required');
+  }
+  if (!condition) {
+    logger.error('Condition is required');
+    return res.status(400).send('Condition required');
+  }
+  if (!date_created) {
+    logger.error('Date created is required');
+    return res.status(400).send('Date created required');
+  }
+  if (!description) {
+    logger.error('Description is required');
+    return res.status(400).send('Description required');
   }
 
   const listing = {
     title,
-    url,
-    rating,
+    owner,
+    price,
+    date_created,
+    condition,
+    location,
+    image,
     description
   };
 

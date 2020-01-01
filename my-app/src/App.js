@@ -11,6 +11,7 @@ import SearchResults from './Components/Search-Results/Search-Results';
 import AuthHelper from './Helpers/Auth';
 import Context from './Components/Context/Context';
 import config from './config';
+import CreateListing from './Components/Create-Listing/Create-Listing';
 
 class App extends React.Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class App extends React.Component {
       AuthHelper.getCurrentUser(this.getAuthToken()).then(data =>
         this.setState(prevState => ({
           currentUser: data,
-          isLoggedIn: !prevState.isLoggedIn
+          isLoggedIn: true
         }))
       );
     }
@@ -48,7 +49,12 @@ class App extends React.Component {
   };
 
   onLogin = () => {
-    this.setState({ isLoggedIn: true });
+    AuthHelper.getCurrentUser(this.getAuthToken()).then(data =>
+      this.setState(prevState => ({
+        currentUser: data,
+        isLoggedIn: true
+      }))
+    );
   };
 
   onLogout = () => {
@@ -63,7 +69,7 @@ class App extends React.Component {
   };
 
   render() {
-    console.log(this.state);
+    console.log(this.state.currentUser);
     return (
       <Context.Provider
         value={{
@@ -82,7 +88,6 @@ class App extends React.Component {
         {' '}
         <div className='App'>
           <NavMenu />
-
           <Route
             exact
             path='/'
@@ -90,7 +95,6 @@ class App extends React.Component {
               return <Landing {...routeProps} />;
             }}
           />
-
           <Route
             exact
             path='/Home'
@@ -120,7 +124,13 @@ class App extends React.Component {
             }}
           />
           <Route
-            path='/item/:listingid'
+            path='/Create-Listing'
+            render={routeProps => {
+              return <CreateListing {...routeProps} />;
+            }}
+          />
+          <Route
+            path='/listing/:listingid'
             render={routeProps => {
               return <DetailedView {...routeProps} />;
             }}
