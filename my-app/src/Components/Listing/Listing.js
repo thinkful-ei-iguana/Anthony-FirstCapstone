@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 export default function Listing(props) {
   function truncate(text) {
     const words = text.split(' ');
-    if (words.length > 5) {
-      return words.slice(0, 10).join(' ') + ' ...';
+    if (words.length > 2) {
+      return words.slice(0, 2).join(' ') + ' ...';
     }
     return text;
   }

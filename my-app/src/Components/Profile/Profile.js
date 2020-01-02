@@ -11,6 +11,7 @@ export default class DetailedView extends React.Component {
     super(props);
     this.state = {
       profileData: {},
+      firstName: '',
       myListings: []
     };
   }
@@ -22,16 +23,20 @@ export default class DetailedView extends React.Component {
 
   truncate = text => {
     const words = text.split(' ');
-    if (words.length > 5) {
-      return words.slice(0, 10).join(' ') + ' ...';
+    if (words.length > 2) {
+      return words.slice(0, 2).join(' ') + ' ...';
     }
     return text;
   };
 
   componentDidMount() {
-    AuthHelper.getPublicAccountData(
-      this.props.match.params.username
-    ).then(data => this.setState({ profileData: data }));
+    AuthHelper.getPublicAccountData(this.props.match.params.username).then(
+      data =>
+        this.setState({
+          profileData: data,
+          firstName: data.name.split(' ')[0]
+        })
+    );
     ListingHelper.getAllMyListings(
       this.props.match.params.username
     ).then(data => this.setState({ myListings: data }));
@@ -53,8 +58,12 @@ export default class DetailedView extends React.Component {
     ) {
       return (
         <div className='accountButtons'>
-          <button onClick={this.editAccount}>Edit Account</button>
-          <button onClick={this.deleteAccount}>Delete Account</button>
+          <button className='editAccount' onClick={this.editAccount}>
+            Edit Account
+          </button>
+          <button className='deleteAccount' onClick={this.deleteAccount}>
+            Delete Account
+          </button>
         </div>
       );
     }
@@ -76,20 +85,29 @@ export default class DetailedView extends React.Component {
 
   render() {
     console.log(this.state);
+    // const firstName =
+    //   this.state.profileData.name.split(' ')[0] || this.state.profileData.name;
     return (
       <div className='Profile'>
-        <h2 className='profile-name'>{this.state.profileData.name}</h2>
-        <a className='profile-email' href='#'>
-          {this.state.profileData.email}
-        </a>
-        <span className='profile-location'>
-          {this.state.profileData.location}
-        </span>
-        <span className='profile-date_created'>
-          {this.state.profileData.date_created}
-        </span>
-        <div className='profile-listings'>{this.renderListing()}</div>
-        <div>{this.accountOption()}</div>
+        <div className='section'>
+          <h1 className='profile-name'>MEET {this.state.firstName}</h1>
+          <div className='container'>
+            <a className='profile-email' href='#'>
+              {this.state.profileData.email}
+            </a>
+            <span className='profile-location'>
+              Located in: {this.state.profileData.location}
+            </span>
+            <span className='profile-date_created'>
+              Member Since: {this.state.profileData.date_created}
+            </span>
+          </div>
+          {this.accountOption()}
+        </div>
+        <div className='section'>
+          <h1>FOR SALE</h1>
+          <div className='container'>{this.renderListing()}</div>
+        </div>
       </div>
     );
   }

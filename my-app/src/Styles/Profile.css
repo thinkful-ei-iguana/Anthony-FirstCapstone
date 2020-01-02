@@ -1,8 +1,73 @@
 .Profile {
+  background-color: transparent;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
   justify-content: center;
-  text-align: center;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   height: 100vh;
+}
+
+.editAccount,
+.deleteAccount {
+  border: 0;
+  background: #f2912b;
+  background: -webkit-linear-gradient(to left, #f2912b, #ffd200);
+  background: linear-gradient(to left, #f2912b, #ffd200);
+  padding: 10px 20px 10px 20px;
+  box-shadow: 0px 2px 6px 0px #a1a1a1;
+  border-radius: 25px;
+  transition: all 0.5s;
+}
+
+.editAccount {
+  margin-right: 150px;
+}
+.deleteAccount:hover,
+.editAccount:hover {
+  opacity: 50%;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.Profile h1 {
+  text-align: center;
+  font-weight: 100;
+}
+
+.container {
+  padding: 10px;
+  box-shadow: 0px 11px 21px -8px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+span {
+  display: block;
+}
+
+.section:nth-child(1) {
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  align-self: auto;
+  margin: 50px;
 }
