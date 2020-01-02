@@ -66,7 +66,6 @@ accountRouter
       .catch(next);
   })
   .get(checkToken, (req, res, next) => {
-    console.log(req.headers);
     jwt.verify(req.token, config.JWT_SECRET, (err, authorizedData) => {
       if (err) {
         //If error send Forbidden (403)
@@ -87,5 +86,26 @@ accountRouter
       }
     });
   });
+
+accountRouter.route('/:username').delete((req, res, next) => {
+  const { username } = req.params;
+  const knexInstance = req.app.get('db');
+
+  AccountService.deleteUser(knexInstance, username)
+    .then(AccountService.deleteListingsOfDeletedUser(knexInstance, username))
+    .then(res.status(204).end())
+    .catch(next);
+});
+
+accountRouter.route('/public/:username').get(bodyParser, (req, res, next) => {
+  const { username } = req.params;
+  AuthService.getUserWithUserName(req.app.get('db'), username).then(dbUser => {
+    delete dbUser.id;
+    delete dbUser.password;
+    res.json({
+      dbUser
+    });
+  });
+});
 
 module.exports = accountRouter;

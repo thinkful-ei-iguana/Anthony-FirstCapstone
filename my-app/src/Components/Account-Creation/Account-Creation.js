@@ -27,7 +27,7 @@ export default class Login extends React.Component {
       name: name.value,
       email: email.value,
       location: location.value,
-      username: username.value,
+      username: username.value.toLowerCase(),
       password: password.value
     })
       .then(user => {

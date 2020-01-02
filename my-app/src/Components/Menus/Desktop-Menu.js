@@ -21,7 +21,9 @@ export default class DesktopMenu extends React.Component {
                 <i class='fa fa-caret-down'></i>
               </button>
               <div class='dropdown-content'>
-                <Link to='/user/:username'>My Account</Link>
+                <Link to={`/user/${this.context.currentUser.username}`}>
+                  My Account
+                </Link>
                 <Link to='/Create-Listing'>Create Listing</Link>
                 <Link onClick={this.context.onLogout} to='/Home'>
                   Logout

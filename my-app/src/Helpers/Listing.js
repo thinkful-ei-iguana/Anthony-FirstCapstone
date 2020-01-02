@@ -29,6 +29,11 @@ const ListingHelper = {
         Authorization: `Bearer ${config.API_TOKEN}`
       }
     });
+  },
+  getAllMyListings(username) {
+    return fetch(`${config.API_ENDPOINT}/listings/${username}`).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
+    );
   }
 
   // get listing by owner

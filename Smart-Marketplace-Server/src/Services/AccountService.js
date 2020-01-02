@@ -17,6 +17,16 @@ const AccountService = {
       .returning('*')
       .then(([user]) => user);
   },
+  deleteUser(db, username) {
+    return db('users')
+      .where({ username })
+      .delete();
+  },
+  deleteListingsOfDeletedUser(db, username) {
+    return db('listings')
+      .where({ owner: username })
+      .delete();
+  },
   validatePassword(password) {
     if (password.startsWith(' ') || password.endsWith(' ')) {
       return 'Password must not start or end with empty spaces';

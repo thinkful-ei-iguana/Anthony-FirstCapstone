@@ -12,6 +12,7 @@ import AuthHelper from './Helpers/Auth';
 import Context from './Components/Context/Context';
 import config from './config';
 import CreateListing from './Components/Create-Listing/Create-Listing';
+import Profile from './Components/Profile/Profile';
 
 class App extends React.Component {
   constructor(props) {
@@ -114,6 +115,13 @@ class App extends React.Component {
             path='/Create-Account'
             render={routeProps => {
               return <AccountCreation {...routeProps} />;
+            }}
+          />
+          <Route
+            exact
+            path='/user/:username'
+            render={routeProps => {
+              return <Profile {...routeProps} />;
             }}
           />
           <Route

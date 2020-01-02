@@ -12,6 +12,14 @@ const AuthHelper = {
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
   },
+  deleteAccount(username) {
+    return fetch(`${config.API_ENDPOINT}/accounts/${username}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${config.API_TOKEN}`
+      }
+    });
+  },
   login(credentials) {
     return fetch(`${config.API_ENDPOINT}/auth/login`, {
       method: 'POST',
@@ -29,6 +37,18 @@ const AuthHelper = {
       headers: {
         'content-type': 'application/json',
         Authorization: `Bearer ${token}`
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        return data.dbUser;
+      });
+  },
+  getPublicAccountData(username) {
+    return fetch(`${config.API_ENDPOINT}/accounts/public/${username}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
       }
     })
       .then(res => res.json())

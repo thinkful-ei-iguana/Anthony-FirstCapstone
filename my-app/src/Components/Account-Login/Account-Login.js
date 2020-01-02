@@ -28,7 +28,7 @@ export default class Login extends React.Component {
     this.setState({ error: null });
     const { username, password } = e.target;
     AuthHelper.login({
-      username: username.value,
+      username: username.value.toLowerCase(),
       password: password.value
     })
       .then(res => {

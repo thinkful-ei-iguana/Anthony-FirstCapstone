@@ -15,6 +15,25 @@ listingRouter.route('/').get((req, res, next) => {
     .catch(next);
 });
 
+listingRouter.route('/:username').get((req, res, next) => {
+  const knexInstance = req.app.get('db');
+  const { username } = req.params;
+  MarketplaceService.getAllByUser(knexInstance, username)
+    .then(listing => {
+      res.json({
+        id: listing.id,
+        title: listing.title,
+        condition: xss(listing.condtion),
+        price: listing.price,
+        date_created: listing.date_created,
+        owner: listing.owner,
+        image: listing.image,
+        description: xss(listing.description)
+      });
+    })
+    .catch(next);
+});
+
 listingRouter
   .route('/:id')
   .get((req, res, next) => {
