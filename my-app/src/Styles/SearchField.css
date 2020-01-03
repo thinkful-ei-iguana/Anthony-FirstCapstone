@@ -1,22 +1,30 @@
-.Creation {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  height: 100vh;
+.SearchForm {
 }
 
-.submitCreate {
-  background: transparent;
+.searchSubmit {
   border: 0;
-  margin-right: 150px;
+  background: #f2912b;
+  background: -webkit-linear-gradient(to left, #f2912b, #ffd200);
+  background: linear-gradient(to left, #f2912b, #ffd200);
+  padding: 10px 20px 10px 20px;
+  box-shadow: 0px 2px 6px 0px #a1a1a1;
+  border-radius: 25px;
+  transition: all 0.5s;
+  display: inline-block;
+  margin-left: 40px;
 }
 
-.oldAccount {
-  background: transparent;
-  border: 0;
+.searchSubmit:hover {
+  opacity: 50%;
+  transition: all 0.5s;
+  cursor: pointer;
 }
+
+/*
+=====
+LEVEL 1. RESET STYLES
+=====
+*/
 
 .field {
   --uiFieldPlaceholderColor: var(--fieldPlaceholderColor, #767676);
@@ -69,8 +77,7 @@ LEVEL 3. PRESENTATION STYLES
 
 /* a-field */
 
-.a-field {
-  display: block;
+.search-field {
   --uiFieldHeight: var(--fieldHeight, 40px);
   --uiFieldBorderWidth: var(--fieldBorderWidth, 2px);
   --uiFieldBorderColor: var(--fieldBorderColor);
@@ -83,7 +90,7 @@ LEVEL 3. PRESENTATION STYLES
   box-sizing: border-box;
   font-size: var(--uiFieldFontSize);
   padding-top: 1em;
-  margin-bottom: 50px;
+  display: inline-block !important;
 }
 
 .a-field__input {
@@ -173,10 +180,6 @@ LEVEL 3. PRESENTATION STYLES
 
 .a-field_a2 .a-field__input:focus ~ .a-field__label-wrap::after {
   width: 100%;
-}
-
-input:focus::placeholder {
-  color: transparent !important;
 }
 
 /* a-field_a3 */

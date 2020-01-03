@@ -126,7 +126,7 @@ class App extends React.Component {
           />
           <Route
             exact
-            path='/search/:searchterm'
+            path='/Search/:term'
             render={routeProps => {
               return <SearchResults {...routeProps} />;
             }}

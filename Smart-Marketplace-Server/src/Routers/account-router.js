@@ -18,7 +18,6 @@ const checkToken = (req, res, next) => {
     req.token = token;
     next();
   } else {
-    //If header is undefined return Forbidden (403)
     res.sendStatus(403);
   }
 };
@@ -76,12 +75,8 @@ accountRouter
   .get(checkToken, (req, res, next) => {
     jwt.verify(req.token, config.JWT_SECRET, (err, authorizedData) => {
       if (err) {
-        //If error send Forbidden (403)
-        console.log('ERROR: Could not connect to the protected route');
         res.sendStatus(403);
       } else {
-        //If token is successfully verified, we can send the autorized data
-        console.log(authorizedData);
         AuthService.getUserWithUserName(
           req.app.get('db'),
           authorizedData.sub
@@ -89,8 +84,6 @@ accountRouter
           delete dbUser.password;
           res.json({ dbUser });
         });
-
-        console.log('SUCCESS: Connected to protected route');
       }
     });
   });
@@ -108,7 +101,6 @@ accountRouter.route('/:username').delete((req, res, next) => {
 accountRouter.route('/public/:username').get(bodyParser, (req, res, next) => {
   const { username } = req.params;
   AuthService.getUserWithUserName(req.app.get('db'), username).then(dbUser => {
-    delete dbUser.id;
     delete dbUser.password;
     res.json({
       dbUser

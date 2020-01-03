@@ -176,6 +176,7 @@ LEVEL 3. PRESENTATION STYLES
   box-sizing: border-box;
   font-size: var(--uiFieldFontSize);
   padding-top: 1em;
+  display: inline-block !important;
 }
 
 .a-field__input {
@@ -304,5 +305,5 @@ LEVEL 4. SETTINGS
 
 .field {
   --fieldBorderColor: #767676;
-  --fieldBorderColorActive: aqua;
+  --fieldBorderColorActive: #ffd200;
 }

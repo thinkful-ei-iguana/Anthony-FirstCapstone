@@ -3,6 +3,7 @@ const listingRouter = express.Router();
 const logger = require('../logger');
 const bodyParser = express.json();
 const MarketplaceService = require('../Services/MarketplaceService');
+const AccountService = require('../Services/AccountService');
 const xss = require('xss');
 const path = require('path');
 
@@ -15,10 +16,10 @@ listingRouter.route('/').get((req, res, next) => {
     .catch(next);
 });
 
-listingRouter.route('/user/:username').get((req, res, next) => {
+listingRouter.route('/user/:id').get((req, res, next) => {
   const knexInstance = req.app.get('db');
-  const { username } = req.params;
-  MarketplaceService.getAllByUser(knexInstance, username)
+  const { id } = req.params;
+  MarketplaceService.getAllByUser(knexInstance, id)
     .then(listing => {
       res.json(
         listing.map(listing => {
@@ -76,6 +77,17 @@ listingRouter
       })
       .catch(next);
   });
+
+listingRouter.route('/owner/:ownerid').get((req, res, next) => {
+  const knexInstance = req.app.get('db');
+  const { ownerid } = req.params;
+  MarketplaceService.getListingOwnerData(knexInstance, ownerid).then(
+    ownerData => {
+      delete ownerData.password;
+      res.json(ownerData);
+    }
+  );
+});
 
 listingRouter.route('/').post(bodyParser, (req, res, next) => {
   const {
@@ -145,6 +157,15 @@ listingRouter.route('/').post(bodyParser, (req, res, next) => {
         .json(listing);
     })
     .catch(next);
+});
+
+listingRouter.route('/search/:term').get((req, res, next) => {
+  const knexInstance = req.app.get('db');
+  const { term } = req.params;
+  const value = term.replace('-', ' ');
+  MarketplaceService.searchListings(knexInstance, value).then(data => {
+    res.json(data);
+  });
 });
 
 listingRouter.patch('/edit/:id', bodyParser, (req, res, next) => {

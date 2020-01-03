@@ -29,7 +29,9 @@ export default class Login extends React.Component {
       location: location.value,
       username: username.value.toLowerCase(),
       password: password.value,
-      avatar: image.value
+      avatar:
+        image.value ||
+        'https://www.sackettwaconia.com/wp-content/uploads/default-profile.png'
     })
       .then(user => {
         name.value = '';
@@ -110,7 +112,6 @@ export default class Login extends React.Component {
           <label className='field a-field a-field_a2'>
             <input
               className='field__input a-field__input'
-              required
               type='text'
               name='image'
               placeholder='Avatar url'

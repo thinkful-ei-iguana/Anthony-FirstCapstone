@@ -22,6 +22,26 @@ const ListingHelper = {
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
   },
+  getListingOwnerData(ownerid) {
+    return fetch(`${config.API_ENDPOINT}/listings/owner/${ownerid}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      }
+    }).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
+    );
+  },
+  search(term) {
+    return fetch(`${config.API_ENDPOINT}/listings/search/${term}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      }
+    }).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
+    );
+  },
   delete(id) {
     return fetch(`${config.API_ENDPOINT}/listings/${id}`, {
       method: 'DELETE',
@@ -30,8 +50,8 @@ const ListingHelper = {
       }
     });
   },
-  getAllMyListings(username) {
-    return fetch(`${config.API_ENDPOINT}/listings/user/${username}`, {
+  getAllMyListings(id) {
+    return fetch(`${config.API_ENDPOINT}/listings/user/${id}`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json'

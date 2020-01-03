@@ -37,7 +37,7 @@
 
   .Desktop-Menu-UserSearchForm label,
   .Desktop-Menu-UserSearchForm input {
-    display: inline-block;
+    display: inline-block !important;
   }
 
   .desktopMenu * {

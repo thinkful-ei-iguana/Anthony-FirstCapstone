@@ -8,7 +8,8 @@ export default class DetailedView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      listing: {}
+      listing: {},
+      owner: {}
     };
   }
 
@@ -20,13 +21,15 @@ export default class DetailedView extends React.Component {
   componentDidMount() {
     const { listingid } = this.props.match.params;
     console.log(listingid);
-    ListingHelper.listingById(listingid)
-      .then(listingData =>
+    ListingHelper.listingById(listingid).then(
+      listingData =>
         this.setState({
           listing: listingData
+        }) +
+        ListingHelper.getListingOwnerData(listingData.owner).then(ownerData => {
+          this.setState({ owner: ownerData });
         })
-      )
-      .then(console.log(this.state.listing));
+    );
   }
 
   deleteListing = () => {
@@ -36,7 +39,7 @@ export default class DetailedView extends React.Component {
   };
 
   deleteOption = () => {
-    if (this.context.currentUser.username === this.state.listing.owner) {
+    if (this.context.currentUser.id === this.state.listing.owner) {
       return <button onClick={this.deleteListing}>Delete Listing</button>;
     }
   };
@@ -60,8 +63,11 @@ export default class DetailedView extends React.Component {
         <p className='item-description'>{this.state.listing.description}</p>
         <div className='owner'>
           <span>Posted By: </span>
-          <Link to={`/user/${this.state.listing.owner}`} className='item-owner'>
-            {this.state.listing.owner}
+          <Link
+            to={`/user/${this.state.owner.username}`}
+            className='item-owner'
+          >
+            {this.state.owner.username}
           </Link>
         </div>
         <div>{this.deleteOption()}</div>

@@ -35,12 +35,10 @@ export default class DetailedView extends React.Component {
         this.setState({
           profileData: data,
           firstName: data.name.split(' ')[0]
+        }) +
+        ListingHelper.getAllMyListings(data.id).then(listingData => {
+          this.setState({ myListings: listingData });
         })
-    );
-    ListingHelper.getAllMyListings(this.props.match.params.username).then(
-      data => {
-        this.setState({ myListings: data });
-      }
     );
   }
 
@@ -84,7 +82,7 @@ export default class DetailedView extends React.Component {
   renderNoListing = () => {
     return (
       <h3 className='noListing'>
-        {this.props.match.params.username} has no listings currently
+        {this.state.firstName} has no listings currently
       </h3>
     );
   };

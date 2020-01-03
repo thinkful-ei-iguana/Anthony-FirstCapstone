@@ -159,7 +159,7 @@ LEVEL 3. PRESENTATION STYLES
 /* a-field_a2 */
 
 .a-field_a2 .a-field__label-wrap::after {
-  content: "";
+  content: '';
   box-sizing: border-box;
   width: 0;
   height: var(--uiFieldBorderWidth);
@@ -186,7 +186,7 @@ input:focus::placeholder {
 }
 
 .a-field_a3 .a-field__label-wrap::after {
-  content: "";
+  content: '';
   box-sizing: border-box;
   width: 100%;
   height: 0;
@@ -216,5 +216,5 @@ LEVEL 4. SETTINGS
 
 .field {
   --fieldBorderColor: #767676;
-  --fieldBorderColorActive: aqua;
+  --fieldBorderColorActive: #ffd200;
 }

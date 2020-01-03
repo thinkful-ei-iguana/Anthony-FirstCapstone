@@ -1,24 +1,40 @@
-import React from "react";
-import "../../Styles/Search-Results.css";
+import React from 'react';
+import '../../Styles/Search-Results.css';
+import ListingHelper from '../../Helpers/Listing';
+import SearchField from '../Search-Field/Search-Field';
+import Listing from '../Listing/Listing';
 
 export default class SearchResults extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filteredListings: []
+    };
+  }
+
+  static defaultProps = {
+    match: { params: {} }
+  };
+
+  componentDidMount() {
+    const { term } = this.props.match.params;
+    ListingHelper.search(term).then(res => {
+      this.setState({ filteredListings: res });
+    });
+  }
+
   render() {
+    console.log(this.state.filteredListings);
     return (
-      <div class="Landing">
-        <header id="Landing-Header">
-          <form id="SearchForm">
-            <label class="field a-field a-field_a2">
-              <input
-                class="field__input a-field__input"
-                placeholder="Apple IPhone 11"
-                required
-              />
-              <span class="a-field__label-wrap">
-                <span class="a-field__label">Search</span>
-              </span>
-            </label>
-          </form>
+      <div className='Search-Results'>
+        <header className='Search-Header'>
+          <SearchField />
         </header>
+        <section className='Search-ResultsList'>
+          {this.state.filteredListings.map(listing => (
+            <Listing key={listing.id} {...listing} />
+          ))}
+        </section>
       </div>
     );
   }

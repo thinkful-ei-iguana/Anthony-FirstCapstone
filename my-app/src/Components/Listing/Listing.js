@@ -3,10 +3,18 @@ import '../../Styles/Listing.css';
 import { Link } from 'react-router-dom';
 
 export default function Listing(props) {
-  function truncate(text) {
-    const words = text.split(' ');
-    if (words.length > 2) {
-      return words.slice(0, 2).join(' ') + ' ...';
+  function truncateDesc(text) {
+    const words = text.split();
+    if (words.length > 20) {
+      return words.slice(0, 20).join('') + ' ...';
+    }
+    return text;
+  }
+
+  function truncateTitle(text) {
+    const words = text.split('');
+    if (words.length > 25) {
+      return words.slice(0, 20).join('') + ' ...';
     }
     return text;
   }
@@ -21,9 +29,11 @@ export default function Listing(props) {
 
         <div className='ThingListItem__details'>
           <div className='ThingListItem__text'>
-            <h2 className='ThingListItem__heading'>{props.title}</h2>
+            <h2 className='ThingListItem__heading'>
+              {truncateTitle(props.title)}
+            </h2>
             <p className='ThingListItem__description'>
-              {truncate(props.description)}
+              {truncateDesc(props.description)}
             </p>
           </div>
         </div>

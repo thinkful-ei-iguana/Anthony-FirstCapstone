@@ -33,7 +33,7 @@ export default class CreateListing extends React.Component {
     this.setState({ error: null });
     Listing.createListing({
       title: title.value,
-      owner: this.context.currentUser.username,
+      owner: this.context.currentUser.id,
       price: price.value,
       date_created: new Date(),
       condition: condition.value,

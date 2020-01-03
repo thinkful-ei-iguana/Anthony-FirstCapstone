@@ -1,26 +1,17 @@
-import React from "react";
-import "../../Styles/Home.css";
-import RecentResults from "../Recent-Results/Recent-Results";
+import React from 'react';
+import '../../Styles/Home.css';
+import RecentResults from '../Recent-Results/Recent-Results';
+import SearchField from '../Search-Field/Search-Field';
 
 export default class Home extends React.Component {
   render() {
+    console.log(this.props);
     return (
-      <div className="Home">
-        <section id="Home-Header">
-          <form id="SearchForm">
-            <label className="field a-field a-field_a2">
-              <input
-                className="field__input a-field__input"
-                placeholder="Apple IPhone 11"
-                required
-              />
-              <span className="a-field__label-wrap">
-                <span className="a-field__label">Search</span>
-              </span>
-            </label>
-          </form>
+      <div className='Home'>
+        <section className='Home-Header'>
+          <SearchField history={this.props.history} />
         </section>
-        <section className="Home-RecentResults">
+        <section className='Home-RecentResults'>
           <RecentResults />
         </section>
       </div>

@@ -2,15 +2,20 @@ const MarketplaceService = {
   getAllListings(knex) {
     return knex('listings').select('*');
   },
-  getAllByUser(knex, username) {
+  getAllByUser(knex, id) {
     return knex('listings')
       .select('*')
-      .where('owner', username);
+      .where('owner', id);
   },
   getListingById(knex, id) {
     return knex('listings')
       .select('*')
       .where('id', id)
+      .first();
+  },
+  getListingOwnerData(knex, ownerid) {
+    return knex('users')
+      .where('id', ownerid)
       .first();
   },
   insertListing(knex, newListing) {
@@ -23,6 +28,11 @@ const MarketplaceService = {
     return knex('listings')
       .where({ id })
       .delete();
+  },
+  searchListings(knex, term) {
+    return knex('listings')
+      .select('*')
+      .where('title', term);
   },
   updateListing(knex, id, updatedData) {
     return knex('listings')
