@@ -5,7 +5,8 @@ Email TEXT NOT NULL,
 Location TEXT NOT NULL,
 Username TEXT NOT NULL,
 Password TEXT NOT NULL,
-Date_Created DATE NOT NULL
+Date_Created DATE NOT NULL,
+Avatar TEXT
 );
 
 CREATE TABLE listings (

@@ -31,7 +31,12 @@ const ListingHelper = {
     });
   },
   getAllMyListings(username) {
-    return fetch(`${config.API_ENDPOINT}/listings/${username}`).then(res =>
+    return fetch(`${config.API_ENDPOINT}/listings/user/${username}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      }
+    }).then(res =>
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
   }

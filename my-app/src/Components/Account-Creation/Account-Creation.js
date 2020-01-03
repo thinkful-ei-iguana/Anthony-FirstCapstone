@@ -20,7 +20,7 @@ export default class Login extends React.Component {
 
   createSubmit = ev => {
     ev.preventDefault();
-    const { name, email, location, username, password } = ev.target;
+    const { name, email, location, username, password, image } = ev.target;
 
     this.setState({ error: null });
     Auth.createAccount({
@@ -28,7 +28,8 @@ export default class Login extends React.Component {
       email: email.value,
       location: location.value,
       username: username.value.toLowerCase(),
-      password: password.value
+      password: password.value,
+      avatar: image.value
     })
       .then(user => {
         name.value = '';
@@ -36,6 +37,7 @@ export default class Login extends React.Component {
         location.value = '';
         username.value = '';
         password.value = '';
+        image.value = '';
         this.handleRegistrationSuccess();
       })
       .catch(res => {
@@ -103,6 +105,18 @@ export default class Login extends React.Component {
             />
             <span className='a-field__label-wrap'>
               <span className='a-field__label'>Password</span>
+            </span>
+          </label>
+          <label className='field a-field a-field_a2'>
+            <input
+              className='field__input a-field__input'
+              required
+              type='text'
+              name='image'
+              placeholder='Avatar url'
+            />
+            <span className='a-field__label-wrap'>
+              <span className='a-field__label'>Avatar url</span>
             </span>
           </label>
           <div className='btn-row'>

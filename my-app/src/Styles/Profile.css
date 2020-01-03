@@ -12,13 +12,14 @@
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-content: center;
-  -ms-flex-line-pack: center;
-  align-content: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
+  -webkit-align-content: flex-start;
+  -ms-flex-line-pack: flex-start;
+  align-content: flex-start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
   height: 100vh;
+  margin-top: 100px;
 }
 
 .editAccount,
@@ -53,6 +54,26 @@
   box-shadow: 0px 11px 21px -8px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   margin-bottom: 30px;
+  height: 500px;
+  width: auto;
+}
+
+.avatar {
+  height: 250px;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  background-size: cover;
+  background-position: 50% 10%;
+}
+
+.listing {
+  overflow: auto;
+  height: 500px;
+}
+
+.item {
+  margin-left: 20px;
+  text-align: center;
 }
 
 span {
@@ -63,11 +84,5 @@ span {
   -webkit-order: 0;
   -ms-flex-order: 0;
   order: 0;
-  -webkit-flex: 0 1 auto;
-  -ms-flex: 0 1 auto;
-  flex: 0 1 auto;
-  -webkit-align-self: auto;
-  -ms-flex-item-align: auto;
-  align-self: auto;
-  margin: 50px;
+  margin-right: 50px;
 }

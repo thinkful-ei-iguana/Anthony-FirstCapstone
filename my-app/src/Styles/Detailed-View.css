@@ -1,0 +1,25 @@
+.view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.owner span,
+.owner a {
+  display: inline;
+}
+
+.image-container {
+  height: 750px;
+  width: 500px;
+}
+
+.image {
+  height: 750px;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  background-size: cover;
+  background-position: 50% 10%;
+}

@@ -7,10 +7,9 @@ export default class DesktopMenu extends React.Component {
   static contextType = Context;
 
   render() {
-    console.log(this.context.isLoggedIn);
     const LightModeToggle = this.context.isLight
-      ? 'far fa-moon fa-fw'
-      : 'far fa-lightbulb fa-fw';
+      ? 'far fa-lightbulb fa-fw'
+      : 'far fa-moon fa-fw';
     return (
       <div className='desktopMenu'>
         {this.context.isLoggedIn ? (
@@ -41,7 +40,7 @@ export default class DesktopMenu extends React.Component {
           <label className='field a-field a-field_a2'>
             <input
               className='field__input a-field__input'
-              placeholder='Apple IPhone 11'
+              placeholder='Search'
               required
             />
             <span className='a-field__label-wrap'>
@@ -51,7 +50,7 @@ export default class DesktopMenu extends React.Component {
           <button type='submit'>search</button>
         </form>
         <div className='DarkMode'>
-          <button className='LightModeToggle' onClick={this.context.LightMode}>
+          <button className='LightModeToggle' onClick={this.context.lightMode}>
             <i className={LightModeToggle}></i>
           </button>
         </div>

@@ -47,7 +47,8 @@ const AccountService = {
       location: xss(user.location),
       username: xss(user.username),
       password: xss(user.password),
-      date_created: new Date(user.date_created)
+      date_created: new Date(user.date_created),
+      avatar: xss(user.avatar)
     };
   }
 };

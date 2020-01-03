@@ -3,7 +3,9 @@ const MarketplaceService = {
     return knex('listings').select('*');
   },
   getAllByUser(knex, username) {
-    return knex('listings').where('owner', username);
+    return knex('listings')
+      .select('*')
+      .where('owner', username);
   },
   getListingById(knex, id) {
     return knex('listings')

@@ -26,8 +26,15 @@ const checkToken = (req, res, next) => {
 accountRouter
   .route('/')
   .post(bodyParser, (req, res, next) => {
-    const { name, email, location, password, username } = req.body;
-    for (const field of ['name', 'email', 'location', 'username', 'password'])
+    const { name, email, location, password, username, avatar } = req.body;
+    for (const field of [
+      'name',
+      'email',
+      'location',
+      'username',
+      'password',
+      'avatar'
+    ])
       if (!req.body[field])
         return res.status(400).json({
           error: `Missing '${field}' in request body`
@@ -50,7 +57,8 @@ accountRouter
             location,
             username,
             password: hashedPassword,
-            date_created: 'now()'
+            date_created: 'now()',
+            avatar
           };
 
           return AccountService.insertUser(req.app.get('db'), newAccount).then(

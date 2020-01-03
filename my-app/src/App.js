@@ -70,7 +70,6 @@ class App extends React.Component {
   };
 
   render() {
-    console.log(this.state.currentUser);
     return (
       <Context.Provider
         value={{
@@ -82,6 +81,7 @@ class App extends React.Component {
           hasAuthToken: this.hasAuthToken,
           makeBasicAuthToken: this.makeBasicAuthToken,
           lightMode: this.toggleLightMode,
+          isLight: this.state.isLight,
           onLogin: this.onLogin,
           onLogout: this.onLogout
         }}

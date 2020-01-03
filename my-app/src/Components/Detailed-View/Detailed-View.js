@@ -20,19 +20,13 @@ export default class DetailedView extends React.Component {
   componentDidMount() {
     const { listingid } = this.props.match.params;
     console.log(listingid);
-    ListingHelper.listingById(listingid).then(listingData =>
-      this.setState({
-        listing: {
-          title: listingData.title,
-          condition: listingData.condition,
-          description: listingData.description,
-          price: listingData.price,
-          date_created: listingData.date_created,
-          image: listingData.image,
-          owner: listingData.owner
-        }
-      })
-    );
+    ListingHelper.listingById(listingid)
+      .then(listingData =>
+        this.setState({
+          listing: listingData
+        })
+      )
+      .then(console.log(this.state.listing));
   }
 
   deleteListing = () => {
@@ -50,19 +44,26 @@ export default class DetailedView extends React.Component {
   render() {
     return (
       <div className='view'>
-        <div
-          className='ThingListItem__image'
-          style={{ backgroundImage: `url(${this.state.listing.image})` }}
-        />
+        <div className='image-container'>
+          <div
+            className='image'
+            style={{ backgroundImage: `url(${this.state.listing.image})` }}
+          />
+        </div>
         <h2 className='item-title'>{this.state.listing.title}</h2>
-        <span className='item-condition'>{this.state.listing.condition}</span>
+        <span className='item-condition'>
+          Item is {this.state.listing.condition}
+        </span>
         <span className='item-date_created'>
-          {this.state.listing.date_created}
+          Posted On: {this.state.listing.date_created}
         </span>
         <p className='item-description'>{this.state.listing.description}</p>
-        <Link to={`/user/${this.state.listing.owner}`} className='item-owner'>
-          {this.state.listing.owner}
-        </Link>
+        <div className='owner'>
+          <span>Posted By: </span>
+          <Link to={`/user/${this.state.listing.owner}`} className='item-owner'>
+            {this.state.listing.owner}
+          </Link>
+        </div>
         <div>{this.deleteOption()}</div>
       </div>
     );

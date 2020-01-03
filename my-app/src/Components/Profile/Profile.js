@@ -37,9 +37,11 @@ export default class DetailedView extends React.Component {
           firstName: data.name.split(' ')[0]
         })
     );
-    ListingHelper.getAllMyListings(
-      this.props.match.params.username
-    ).then(data => this.setState({ myListings: data }));
+    ListingHelper.getAllMyListings(this.props.match.params.username).then(
+      data => {
+        this.setState({ myListings: data });
+      }
+    );
   }
 
   editAccount = () => {
@@ -70,29 +72,41 @@ export default class DetailedView extends React.Component {
   };
 
   renderListing = () => {
-    if (this.state.myListings.length > 1) {
-      this.state.myListings.map(listing => {
-        return <Listing key={listing.id} {...listing} />;
-      });
-    } else {
+    return this.state.myListings.map(listing => {
       return (
-        <h3 className='noListing'>
-          {this.props.match.params.username} has no listings currently
-        </h3>
+        <div className='item'>
+          <Listing key={listing.id} {...listing} />
+        </div>
       );
-    }
+    });
+  };
+
+  renderNoListing = () => {
+    return (
+      <h3 className='noListing'>
+        {this.props.match.params.username} has no listings currently
+      </h3>
+    );
   };
 
   render() {
-    console.log(this.state);
-    // const firstName =
-    //   this.state.profileData.name.split(' ')[0] || this.state.profileData.name;
     return (
       <div className='Profile'>
         <div className='section'>
-          <h1 className='profile-name'>MEET {this.state.firstName}</h1>
+          <h1 className='profile-name'>
+            MEET {this.state.firstName.toUpperCase()}
+          </h1>
           <div className='container'>
-            <a className='profile-email' href='#'>
+            <div
+              className='avatar'
+              style={{
+                backgroundImage: `url(${this.state.profileData.avatar})`
+              }}
+            />
+            <a
+              className='profile-email'
+              href={`mailto://${this.state.profileData.email}`}
+            >
               {this.state.profileData.email}
             </a>
             <span className='profile-location'>
@@ -106,7 +120,11 @@ export default class DetailedView extends React.Component {
         </div>
         <div className='section'>
           <h1>FOR SALE</h1>
-          <div className='container'>{this.renderListing()}</div>
+          <div className='container listing'>
+            {this.state.myListings.length > 0
+              ? this.renderListing()
+              : this.renderNoListing()}
+          </div>
         </div>
       </div>
     );
