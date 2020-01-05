@@ -32,6 +32,7 @@
   box-shadow: 0px 2px 6px 0px #a1a1a1;
   border-radius: 25px;
   transition: all 0.5s;
+  font-size: calc(-5px + 2vmin) !important;
 }
 
 .editAccount {

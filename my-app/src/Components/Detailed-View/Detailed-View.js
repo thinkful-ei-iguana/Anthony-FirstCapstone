@@ -3,6 +3,7 @@ import '../../Styles/Detailed-View.css';
 import ListingHelper from '../../Helpers/Listing';
 import { Link } from 'react-router-dom';
 import Context from '../Context/Context';
+import { format, formatDistanceToNow, toDate } from 'date-fns';
 
 export default class DetailedView extends React.Component {
   constructor(props) {
@@ -57,7 +58,6 @@ export default class DetailedView extends React.Component {
   };
 
   render() {
-    console.log(this.state.listing);
     return (
       <div className='view'>
         <div className='listing-container'>
@@ -72,11 +72,15 @@ export default class DetailedView extends React.Component {
           <span className='view-counter'>
             <i class='far fa-eye'></i> {this.state.listing.page_views}
           </span>
+          <span className='item-price'>
+            {' '}
+            {`${this.state.owner.username} is wanting ${this.state.listing.price} for this item`}
+          </span>
           <span className='item-condition'>
             Item is {this.state.listing.condition}
           </span>
           <span className='item-date_created'>
-            Posted On: {this.state.listing.date_created}
+            {/* Posted On: {format(this.state.listing.date_created, 'Do MMM YYYY')} */}
           </span>
           <p className='item-description'>{this.state.listing.description}</p>
           <div className='owner'>

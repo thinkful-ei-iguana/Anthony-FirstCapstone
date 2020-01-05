@@ -40,7 +40,7 @@
 }
 
 .ThingListItem {
-  background: none;
+  background: var(--alt-bg);
   display: flex;
   flex-direction: column;
   border: 0;
@@ -61,7 +61,7 @@
 
 .ThingListItem,
 .ThingListItem:visited {
-  color: #555;
+  color: var(--alt-text);
 }
 
 .ThingListItem__image {

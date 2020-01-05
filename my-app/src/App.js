@@ -14,6 +14,7 @@ import config from './config';
 import CreateListing from './Components/Create-Listing/Create-Listing';
 import Profile from './Components/Profile/Profile';
 import EditListing from './Components/Edit-Listing/Edit-Listing';
+import EditAccount from './Components/Edit-Account/Edit-Account';
 
 class App extends React.Component {
   constructor(props) {
@@ -68,6 +69,11 @@ class App extends React.Component {
     this.setState(prevState => ({
       isLight: !prevState.isLight
     }));
+    if (this.state.isLight) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
   };
 
   render() {
@@ -116,6 +122,13 @@ class App extends React.Component {
             path='/Create-Account'
             render={routeProps => {
               return <AccountCreation {...routeProps} />;
+            }}
+          />
+          <Route
+            exact
+            path='/Edit-Account'
+            render={routeProps => {
+              return <EditAccount {...routeProps} />;
             }}
           />
           <Route

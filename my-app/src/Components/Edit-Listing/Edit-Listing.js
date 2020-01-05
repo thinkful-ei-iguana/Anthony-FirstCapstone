@@ -52,7 +52,7 @@ export default class CreateListing extends React.Component {
       title: title.value,
       category: category.value,
       owner: this.context.currentUser.id,
-      price: price.value,
+      price: '$' + price.value,
       date_created: new Date(),
       condition: condition.value,
       location: this.context.currentUser.location,
@@ -111,7 +111,7 @@ export default class CreateListing extends React.Component {
             <input
               className='field__input a-field__input'
               required
-              type='text'
+              type='number'
               name='price'
               placeholder='Price'
             />

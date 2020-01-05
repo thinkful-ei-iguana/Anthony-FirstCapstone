@@ -58,9 +58,9 @@ export default class DetailedView extends React.Component {
     ) {
       return (
         <div className='accountButtons'>
-          <button className='editAccount' onClick={this.editAccount}>
+          <Link className='editAccount' to='/Edit-Account'>
             Edit Account
-          </button>
+          </Link>
           <button className='deleteAccount' onClick={this.deleteAccount}>
             Delete Account
           </button>

@@ -1,10 +1,16 @@
 :root {
   --bg: #feffff;
-  --accent: #98dafc;
   --buttons: #f2912b;
   --alt-buttons: #ffd200;
   --text: #312c32;
-  --alt-bg: #cfcfcf;
+  --alt-text: #555;
+  --alt-bg: #fff;
+}
+
+[data-theme='dark'] {
+  --bg: #2b2c34;
+  --alt-bg: #555;
+  --alt-text: #fff;
 }
 
 ::-webkit-scrollbar {
@@ -15,6 +21,7 @@
 a,
 button {
   text-decoration: none;
+  color: black;
 }
 
 .App {
