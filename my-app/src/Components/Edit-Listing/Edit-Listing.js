@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Listing from '../../Helpers/Listing';
-import '../../Styles/Create-Listing.css';
+import '../../Styles/Edit-Listing.css';
 import Context from '../Context/Context';
+import ListingHelper from '../../Helpers/Listing';
 
 export default class CreateListing extends React.Component {
   static contextType = Context;
@@ -13,18 +14,34 @@ export default class CreateListing extends React.Component {
     }
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      listing: {}
+    };
+  }
+
+  ownerCheck = () => {
+    if (this.context.currentUser.id !== this.state.listing.owner) {
+      return this.nonOwner();
+    } else {
+      return this.owner();
+    }
+  };
+
   componentDidMount() {
     if (!this.context.hasAuthToken()) {
       this.props.history.push('/Login');
     }
+    ListingHelper.listingById(this.props.match.params.listingid).then(data => {
+      this.setState({ listing: data });
+    });
   }
 
   handleCreationSuccess = () => {
     const { history } = this.props;
     history.push('/Home');
   };
-
-  state = { error: null };
 
   createSubmit = ev => {
     ev.preventDefault();
@@ -55,7 +72,13 @@ export default class CreateListing extends React.Component {
       });
   };
 
-  render() {
+  nonOwner = () => {
+    console.log('rendering nonowner');
+    return <h2>Sorry you're not the owner of this listing</h2>;
+  };
+
+  owner = () => {
+    console.log('rendering owner');
     return (
       <div className='Creation'>
         <header className='Creation-Header'></header>
@@ -133,7 +156,7 @@ export default class CreateListing extends React.Component {
             </span>
           </label>
           <div className='btn-row'>
-            <button className='submitLogin'>Create</button>
+            <button className='submitLogin'>Submit</button>
             <Link to='/Home'>
               <button className='newAccount'>Cancel</button>
             </Link>
@@ -141,5 +164,9 @@ export default class CreateListing extends React.Component {
         </form>
       </div>
     );
+  };
+
+  render() {
+    return <div className='Edit'>{this.ownerCheck()}</div>;
   }
 }

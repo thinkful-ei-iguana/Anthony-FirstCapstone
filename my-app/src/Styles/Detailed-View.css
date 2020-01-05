@@ -23,3 +23,29 @@
   background-size: cover;
   background-position: 50% 10%;
 }
+
+.editListing,
+.deleteListing {
+  border: 0;
+  background: #f2912b;
+  background: -webkit-linear-gradient(to left, #f2912b, #ffd200);
+  background: linear-gradient(to left, #f2912b, #ffd200);
+  padding: 10px 20px 10px 20px;
+  box-shadow: 0px 2px 6px 0px #a1a1a1;
+  border-radius: 25px;
+  transition: all 0.5s;
+}
+
+.editListing {
+  margin-right: 150px;
+}
+.deleteListing:hover,
+.editListing:hover {
+  opacity: 50%;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.ownerButtons {
+  margin-top: 15px;
+}

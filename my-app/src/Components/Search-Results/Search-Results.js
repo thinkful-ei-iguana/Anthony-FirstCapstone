@@ -18,7 +18,9 @@ export default class SearchResults extends React.Component {
 
   componentDidMount() {
     const { term } = this.props.match.params;
-    ListingHelper.search(term).then(res => {
+    const value = new RegExp(term.split('-'));
+    console.log(value);
+    ListingHelper.search(value).then(res => {
       this.setState({ filteredListings: res });
     });
   }

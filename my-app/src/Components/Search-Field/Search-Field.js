@@ -20,26 +20,22 @@ export default class Home extends React.Component {
 
   render() {
     return (
-      <div className='Home'>
-        <section id='Home-Header'>
-          <form className='SearchForm' onSubmit={this.processSearch}>
-            <label className='field search-field a-field_a2'>
-              <input
-                className='field__input a-field__input'
-                placeholder='Search'
-                name='term'
-                required
-              />
-              <span className='a-field__label-wrap'>
-                <span className='a-field__label'>Search</span>
-              </span>
-            </label>
-            <button className='searchSubmit' type='submit'>
-              search
-            </button>
-          </form>
-        </section>
-      </div>
+      <form className='SearchForm' onSubmit={this.processSearch}>
+        <label className='field search-field a-field_a2'>
+          <input
+            className='field__input a-field__input'
+            placeholder='Search'
+            name='term'
+            required
+          />
+          <span className='a-field__label-wrap'>
+            <span className='a-field__label'>Search</span>
+          </span>
+        </label>
+        <button className='searchSubmit' type='submit'>
+          search
+        </button>
+      </form>
     );
   }
 }

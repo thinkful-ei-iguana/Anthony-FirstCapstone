@@ -15,8 +15,7 @@ export default class RecentResults extends React.Component {
     fetch(`${config.API_ENDPOINT}listings`, {
       method: 'GET',
       headers: {
-        'content-type': 'application/json',
-        Authorization: `Bearer ${config.API_TOKEN}`
+        'content-type': 'application/json'
       }
     })
       .then(res => res.json())

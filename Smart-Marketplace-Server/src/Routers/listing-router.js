@@ -50,19 +50,23 @@ listingRouter
           logger.error(`listing with id ${id} not found`);
           return res.status(404).send('Listing not found');
         }
-        res.json({
-          id: listing.id,
-          title: listing.title,
-          condition: xss(listing.condition),
-          price: listing.price,
-          date_created: listing.date_created,
-          owner: listing.owner,
-          image: listing.image,
-          description: xss(listing.description)
+        console.log(listing);
+        const listingid = listing.id;
+        const views = listing.page_views;
+        let newVal = views + 1;
+
+        MarketplaceService.updatePageViews(
+          knexInstance,
+          listingid,
+          newVal
+        ).then(data => {
+          console.log(data);
+          res.json(data[0]);
         });
       })
       .catch(next);
   })
+
   .delete((req, res, next) => {
     const knexInstance = req.app.get('db');
     const { id } = req.params;
@@ -92,18 +96,24 @@ listingRouter.route('/owner/:ownerid').get((req, res, next) => {
 listingRouter.route('/').post(bodyParser, (req, res, next) => {
   const {
     title,
+    category,
     price,
     owner,
     image,
     location,
     condition,
     date_created,
-    description
+    description,
+    page_views
   } = req.body;
 
   if (!title) {
     logger.error('Title is required');
     return res.status(400).send('Title required');
+  }
+  if (!category) {
+    logger.error('Category is required');
+    return res.status(400).send('Category required');
   }
   if (!price) {
     logger.error('Price is required');
@@ -136,13 +146,15 @@ listingRouter.route('/').post(bodyParser, (req, res, next) => {
 
   const listing = {
     title,
+    category,
     owner,
     price,
     date_created,
     condition,
     location,
     image,
-    description
+    description,
+    page_views
   };
 
   const knexInstance = req.app.get('db');

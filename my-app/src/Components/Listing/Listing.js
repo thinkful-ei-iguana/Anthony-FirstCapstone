@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 export default function Listing(props) {
   function truncateDesc(text) {
-    const words = text.split();
-    if (words.length > 20) {
-      return words.slice(0, 20).join('') + ' ...';
+    const words = text.split('');
+    if (words.length > 35) {
+      return words.slice(0, 35).join('') + ' ...';
     }
     return text;
   }

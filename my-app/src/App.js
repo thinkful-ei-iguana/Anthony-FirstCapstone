@@ -13,6 +13,7 @@ import Context from './Components/Context/Context';
 import config from './config';
 import CreateListing from './Components/Create-Listing/Create-Listing';
 import Profile from './Components/Profile/Profile';
+import EditListing from './Components/Edit-Listing/Edit-Listing';
 
 class App extends React.Component {
   constructor(props) {
@@ -141,6 +142,13 @@ class App extends React.Component {
             path='/listing/:listingid'
             render={routeProps => {
               return <DetailedView {...routeProps} />;
+            }}
+          />
+          <Route
+            exact
+            path='/Edit-Listing/:listingid'
+            render={routeProps => {
+              return <EditListing {...routeProps} />;
             }}
           />
         </div>
