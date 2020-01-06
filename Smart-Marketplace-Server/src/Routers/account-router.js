@@ -108,4 +108,58 @@ accountRouter.route('/public/:username').get(bodyParser, (req, res, next) => {
   });
 });
 
+accountRouter.patch('/edit/:id', bodyParser, (req, res, next) => {
+  const knexInstance = req.app.get('db');
+  const { id } = req.params;
+  const { username, name, email, location, password, avatar } = req.body;
+  const updatedData = {
+    username,
+    name,
+    email,
+    location,
+    password,
+    avatar
+  };
+
+  const numberOfValues = Object.values(updatedData).filter(Boolean).length;
+  if (numberOfValues === 0) {
+    return res.status(400).json({
+      error: {
+        message:
+          'Request body must contain either username, name, email, location, password or avatar'
+      }
+    });
+  }
+
+  const passwordError = AccountService.validatePassword(password);
+
+  if (passwordError) {
+    return res.status(400).json({ error: passwordError });
+  }
+  AccountService.hasUserWithUserName(req.app.get('db'), username).then(
+    hasUserWithUserName => {
+      if (hasUserWithUserName)
+        return res.status(400).json({ error: 'Username already taken' });
+
+      return AccountService.hashPassword(password).then(hashedPassword => {
+        const updatedData = {
+          name,
+          email,
+          location,
+          username,
+          password: hashedPassword,
+          avatar
+        };
+
+        return AccountService.updateAccount(knexInstance, id, updatedData).then(
+          update => {
+            console.log(update);
+            res.status(204).json(AccountService.serializeUser(update));
+          }
+        );
+      });
+    }
+  );
+});
+
 module.exports = accountRouter;

@@ -21,6 +21,7 @@ export default class Login extends React.Component {
 
   handleRegistrationSuccess = user => {
     const { history } = this.props;
+    this.context.onLogout();
     history.push('/login');
   };
 
@@ -31,17 +32,20 @@ export default class Login extends React.Component {
     const { name, email, location, username, password, image } = ev.target;
 
     this.setState({ error: null });
-    Auth.createAccount({
-      id: this.context.currentUser.id,
-      name: name.value,
-      email: email.value,
-      location: location.value,
-      username: username.value.toLowerCase(),
-      password: password.value,
-      avatar:
-        image.value ||
-        'https://www.sackettwaconia.com/wp-content/uploads/default-profile.png'
-    })
+    Auth.updateAccount(
+      {
+        id: this.context.currentUser.id,
+        name: name.value,
+        email: email.value,
+        location: location.value,
+        username: username.value.toLowerCase(),
+        password: password.value,
+        avatar:
+          image.value ||
+          'https://www.sackettwaconia.com/wp-content/uploads/default-profile.png'
+      },
+      this.context.currentUser.id
+    )
       .then(user => {
         name.value = '';
         email.value = '';

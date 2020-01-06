@@ -50,7 +50,6 @@ listingRouter
           logger.error(`listing with id ${id} not found`);
           return res.status(404).send('Listing not found');
         }
-        console.log(listing);
         const listingid = listing.id;
         const views = listing.page_views;
         let newVal = views + 1;
@@ -60,7 +59,6 @@ listingRouter
           listingid,
           newVal
         ).then(data => {
-          console.log(data);
           res.json(data[0]);
         });
       })
@@ -183,12 +181,14 @@ listingRouter.route('/search/:term').get((req, res, next) => {
 listingRouter.patch('/edit/:id', bodyParser, (req, res, next) => {
   const knexInstance = req.app.get('db');
   const { id } = req.params;
-  const { title, url, rating, description } = req.body;
+  const { title, category, price, condition, description, image } = req.body;
   const updatedData = {
     title,
-    url,
-    rating,
-    description
+    category,
+    price,
+    condition,
+    description,
+    image
   };
 
   const numberOfValues = Object.values(updatedData).filter(Boolean).length;
@@ -196,13 +196,14 @@ listingRouter.patch('/edit/:id', bodyParser, (req, res, next) => {
     return res.status(400).json({
       error: {
         message:
-          "Request body must contain either 'title', 'url', 'description or 'rating'"
+          'Request body must contain either title, category, price, description or image'
       }
     });
   }
 
   MarketplaceService.updateListing(knexInstance, id, updatedData)
     .then(update => {
+      console.log(update);
       res.status(204).end();
     })
     .catch(next);

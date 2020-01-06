@@ -38,34 +38,37 @@ export default class CreateListing extends React.Component {
     });
   }
 
-  handleCreationSuccess = () => {
+  handleEditSuccess = () => {
     const { history } = this.props;
     history.push('/Home');
   };
 
-  createSubmit = ev => {
+  editSubmit = ev => {
     ev.preventDefault();
     const { title, price, condition, description, image, category } = ev.target;
 
     this.setState({ error: null });
-    Listing.createListing({
-      title: title.value,
-      category: category.value,
-      owner: this.context.currentUser.id,
-      price: '$' + price.value,
-      date_created: new Date(),
-      condition: condition.value,
-      location: this.context.currentUser.location,
-      description: description.value,
-      image: image.value,
-      page_views: 0
-    })
+    Listing.updateListing(
+      {
+        title: title.value,
+        category: category.value,
+        owner: this.context.currentUser.id,
+        price: '$' + price.value,
+        date_created: new Date(),
+        condition: condition.value,
+        location: this.context.currentUser.location,
+        description: description.value,
+        image: image.value,
+        page_views: 0
+      },
+      this.state.listing.id
+    )
       .then(listing => {
         title.value = '';
         price.value = '';
         description.value = '';
         image.value = '';
-        this.handleCreationSuccess();
+        this.handleEditSuccess();
       })
       .catch(res => {
         this.setState({ error: res.error });
@@ -82,7 +85,7 @@ export default class CreateListing extends React.Component {
     return (
       <div className='Creation'>
         <header className='Creation-Header'></header>
-        <form className='Creation-Form' onSubmit={this.createSubmit}>
+        <form className='Creation-Form' onSubmit={this.editSubmit}>
           <label className='field a-field a-field_a2'>
             <input
               className='field__input a-field__input'

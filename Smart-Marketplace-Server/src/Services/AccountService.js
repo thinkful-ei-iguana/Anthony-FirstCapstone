@@ -27,6 +27,11 @@ const AccountService = {
       .where({ owner: username })
       .delete();
   },
+  updateAccount(knex, id, updatedData) {
+    return knex('users')
+      .where({ id })
+      .update(updatedData);
+  },
   validatePassword(password) {
     if (password.startsWith(' ') || password.endsWith(' ')) {
       return 'Password must not start or end with empty spaces';

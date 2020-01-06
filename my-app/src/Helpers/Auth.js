@@ -55,8 +55,17 @@ const AuthHelper = {
       .then(data => {
         return data.dbUser;
       });
+  },
+  updateAccount(updatedData, id) {
+    return fetch(`${config.API_ENDPOINT}/accounts/edit/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `Bearer ${config.TOKEN_KEY}`
+      },
+      body: JSON.stringify(updatedData)
+    });
   }
-  // delete user
 };
 
 export default AuthHelper;

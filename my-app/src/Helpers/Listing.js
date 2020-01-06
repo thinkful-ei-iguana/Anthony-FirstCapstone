@@ -46,7 +46,7 @@ const ListingHelper = {
     return fetch(`${config.API_ENDPOINT}/listings/${id}`, {
       method: 'DELETE',
       headers: {
-        Authorization: `Bearer ${config.API_TOKEN}`
+        Authorization: `Bearer ${config.TOKEN_KEY}`
       }
     });
   },
@@ -59,6 +59,16 @@ const ListingHelper = {
     }).then(res =>
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
+  },
+  updateListing(updatedData, id) {
+    return fetch(`${config.API_ENDPOINT}/listings/edit/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `Bearer ${config.TOKEN_KEY}`
+      },
+      body: JSON.stringify(updatedData)
+    });
   }
 
   // get listing by owner
