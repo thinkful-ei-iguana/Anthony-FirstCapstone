@@ -13,10 +13,29 @@ export default class Login extends React.Component {
     }
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  handleChange = ev => {
+    ev.preventDefault();
+    this.setState({
+      [ev.target.name]: ev.target.name.value
+    });
+  };
+
   componentDidMount() {
     if (!this.context.hasAuthToken()) {
       this.props.history.push('/Login');
     }
+    this.setState({
+      name: this.context.currentUser.name,
+      email: this.context.currentUser.email,
+      location: this.context.currentUser.location,
+      username: this.context.currentUser.username,
+      avatar: this.context.currentUser.avatar
+    });
   }
 
   handleRegistrationSuccess = user => {
@@ -30,6 +49,7 @@ export default class Login extends React.Component {
   createSubmit = ev => {
     ev.preventDefault();
     const { name, email, location, username, password, image } = ev.target;
+    const currentUsername = this.context.currentUser.username;
 
     this.setState({ error: null });
     Auth.updateAccount(
@@ -38,23 +58,27 @@ export default class Login extends React.Component {
         name: name.value,
         email: email.value,
         location: location.value,
-        username: username.value.toLowerCase(),
-        password: password.value,
+        username() {
+          if (currentUsername === username.value) {
+            return '';
+          } else {
+            return `username: ${username.value}`.toLowerCase();
+          }
+        },
+        password() {
+          if (password.value.length > 0) {
+            return `password: ${password.value}`;
+          } else {
+            return '';
+          }
+        },
         avatar:
           image.value ||
           'https://www.sackettwaconia.com/wp-content/uploads/default-profile.png'
       },
       this.context.currentUser.id
     )
-      .then(user => {
-        name.value = '';
-        email.value = '';
-        location.value = '';
-        username.value = '';
-        password.value = '';
-        image.value = '';
-        this.handleRegistrationSuccess();
-      })
+      .then(this.handleRegistrationSuccess())
       .catch(res => {
         this.setState({ error: res.error });
       });
@@ -64,11 +88,15 @@ export default class Login extends React.Component {
     return (
       <div className='Creation'>
         <header className='Creation-Header'></header>
-        <form className='Creation-Form' onSubmit={this.createSubmit}>
+        <form
+          className='Creation-Form'
+          onSubmit={this.createSubmit}
+          onChange={this.handleChange}
+        >
           <label className='field a-field a-field_a2'>
             <input
               className='field__input a-field__input'
-              required
+              value={this.state.name}
               name='name'
               placeholder='Name'
             />
@@ -79,7 +107,7 @@ export default class Login extends React.Component {
           <label className='field a-field a-field_a2'>
             <input
               className='field__input a-field__input'
-              required
+              value={this.state.email}
               type='email'
               name='email'
               placeholder='Email'
@@ -91,7 +119,7 @@ export default class Login extends React.Component {
           <label className='field a-field a-field_a2'>
             <input
               className='field__input a-field__input'
-              required
+              value={this.state.location}
               name='location'
               placeholder='Location'
             />
@@ -102,7 +130,7 @@ export default class Login extends React.Component {
           <label className='field a-field a-field_a2'>
             <input
               className='field__input a-field__input'
-              required
+              value={this.state.username}
               name='username'
               placeholder='Username'
             />
@@ -113,7 +141,6 @@ export default class Login extends React.Component {
           <label className='field a-field a-field_a2'>
             <input
               className='field__input a-field__input'
-              required
               name='password'
               type='password'
               placeholder='Password'
@@ -125,6 +152,7 @@ export default class Login extends React.Component {
           <label className='field a-field a-field_a2'>
             <input
               className='field__input a-field__input'
+              value={this.state.avatar}
               type='text'
               name='image'
               placeholder='Avatar url'
@@ -134,7 +162,7 @@ export default class Login extends React.Component {
             </span>
           </label>
           <div className='btn-row'>
-            <button className='submitLogin'>Create</button>
+            <button className='submitLogin'>Submit Changes</button>
             <Link to='/Login'>
               <button className='newAccount'>Have an account?</button>
             </Link>

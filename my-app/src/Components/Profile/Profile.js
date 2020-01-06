@@ -111,7 +111,12 @@ export default class DetailedView extends React.Component {
               Located in: {this.state.profileData.location}
             </span>
             <span className='profile-date_created'>
-              Member Since: {this.state.profileData.date_created}
+              Member Since:{' '}
+              {
+                new Date(this.state.profileData.date_created)
+                  .toLocaleString()
+                  .split(',')[0]
+              }
             </span>
           </div>
           {this.accountOption()}

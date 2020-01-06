@@ -80,7 +80,12 @@ export default class DetailedView extends React.Component {
             Item is {this.state.listing.condition}
           </span>
           <span className='item-date_created'>
-            {/* Posted On: {format(this.state.listing.date_created, 'Do MMM YYYY')} */}
+            Posted On:{' '}
+            {
+              new Date(this.state.listing.date_created)
+                .toLocaleString()
+                .split(',')[0]
+            }
           </span>
           <p className='item-description'>{this.state.listing.description}</p>
           <div className='owner'>
