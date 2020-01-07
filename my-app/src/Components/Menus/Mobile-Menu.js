@@ -1,11 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../Styles/Mobile-Menu.css';
-import TokenService from '../../Helpers/Token';
+import Context from '../Context/Context';
+import NavSearch from '../Search-Field/Nav-Search-Field';
 
 export default class DesktopMenu extends React.Component {
+  static contextType = Context;
+  static defaultProps = {
+    match: { params: {} }
+  };
+
+  processSearch = e => {
+    e.preventDefault();
+    const { term } = e.target;
+    const value = term.value.replace(/ +/g, '-');
+    const { history } = this.props;
+    const destination = `/Search/${value}`;
+    history.push(destination);
+  };
+
   render() {
-    const LightModeToggle = this.props.state.isLight
+    const LightModeToggle = this.context.isLight
       ? 'far fa-moon fa-fw'
       : 'far fa-lightbulb fa-fw';
     return (
@@ -20,27 +35,43 @@ export default class DesktopMenu extends React.Component {
           </button>
           <div id='Inner-Container'>
             <div id='Account-Options'>
-              {/* {TokenService.hasAuthToken()
-                ? this.props.renderLogoutLink()
-                : this.props.renderLoginLink()} */}
+              {this.context.isLoggedIn ? (
+                <div className='Header__logged-in'>
+                  <div className='dropdown'>
+                    <button className='dropbtn'>
+                      <img
+                        className='Mobile-avatarNavMenu'
+                        src={this.context.currentUser.avatar}
+                        alt='avatar'
+                      />
+                    </button>
+                    <div className='dropdown-content'>
+                      <Link to={`/user/${this.context.currentUser.username}`}>
+                        My Account
+                      </Link>
+                      <Link to='/Create-Listing'>Create Listing</Link>
+                      <Link onClick={this.context.onLogout} to='/Home'>
+                        Logout
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className='Header__logged-out'>
+                  <Link className='mobile-Login' to='/login'>
+                    Log in
+                  </Link>
+                  <Link className='mobile-Register' to='/create-account'>
+                    Register
+                  </Link>
+                </div>
+              )}
             </div>
-            <form id='Mobile-Menu-UserSearchForm'>
-              <label className='field a-field a-field_a2'>
-                <input
-                  className='field__input a-field__input'
-                  placeholder='Apple IPhone 11'
-                  required
-                />
-                <span className='a-field__label-wrap'>
-                  <span className='a-field__label'>Search</span>
-                </span>
-              </label>
-              <button type='submit'>search</button>
-            </form>
+            <NavSearch history={this.props.history} />
             <div id='DarkMode'>
               <button
                 className='LightModeToggle'
-                onClick={this.props.LightMode}
+                onClick={this.context.lightMode}
               >
                 <i className={LightModeToggle}></i>
               </button>

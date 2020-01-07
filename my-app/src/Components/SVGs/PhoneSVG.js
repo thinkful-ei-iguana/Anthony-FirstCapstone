@@ -4,7 +4,6 @@ import Lottie from "react-lottie";
 export default class Icon extends React.Component {
 
   render() {
-    console.log(this.state);
     return (
       <Lottie
         options={{

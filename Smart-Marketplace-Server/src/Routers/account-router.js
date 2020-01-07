@@ -108,16 +108,14 @@ accountRouter.route('/public/:username').get(bodyParser, (req, res, next) => {
   });
 });
 
-accountRouter.patch('/edit/:id', bodyParser, (req, res, next) => {
+accountRouter.patch('/edit/:id', bodyParser, async (req, res, next) => {
   const knexInstance = req.app.get('db');
   const { id } = req.params;
   const { username, name, email, location, password, avatar } = req.body;
   let updatedData = {
-    username,
     name,
     email,
     location,
-    password,
     avatar
   };
 
@@ -132,14 +130,17 @@ accountRouter.patch('/edit/:id', bodyParser, (req, res, next) => {
   }
 
   if (username) {
-    AccountService.hasUserWithUserName(req.app.get('db'), username).then(
-      hasUserWithUserName => {
-        if (hasUserWithUserName)
-          return res.status(400).json({
-            error: 'Username already taken'
-          });
-      }
+    const hasUserUsername = await AccountService.hasUserWithUserName(
+      req.app.get('db'),
+      username
     );
+    if (hasUserUsername) {
+      return res.status(400).json({
+        error: 'Username already taken'
+      });
+    } else {
+      updatedData.username = username;
+    }
   }
 
   if (password) {
@@ -149,26 +150,19 @@ accountRouter.patch('/edit/:id', bodyParser, (req, res, next) => {
         error: passwordError
       });
     }
+    await AccountService.hashPassword(password).then(hashedPassword => {
+      console.log(password);
+      updatedData.password = hashedPassword;
+    });
   }
 
-  if (password)
-    return AccountService.hashPassword(password).then(hashedPassword => {
-      updatedData = {
-        name,
-        email,
-        location,
-        username,
-        password: hashedPassword,
-        avatar
-      };
-    });
-  if (password || !password)
-    return AccountService.updateAccount(knexInstance, id, updatedData).then(
-      update => {
-        console.log(update, 'update ran');
-        res.status(204).json(AccountService.serializeUser(update));
-      }
-    );
+  console.log(updatedData);
+  return AccountService.updateAccount(knexInstance, id, updatedData).then(
+    update => {
+      console.log(update, 'update ran');
+      res.status(204).json(AccountService.serializeUser(update));
+    }
+  );
 });
 
 module.exports = accountRouter;

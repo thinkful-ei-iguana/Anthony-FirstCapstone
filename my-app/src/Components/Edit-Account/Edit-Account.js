@@ -52,26 +52,19 @@ export default class Login extends React.Component {
     const currentUsername = this.context.currentUser.username;
 
     this.setState({ error: null });
+    const usernameVal =
+      currentUsername === username.value ? '' : username.value.toLowerCase();
+
+    const passwordVal = !password.value ? '' : password.value;
+
     Auth.updateAccount(
       {
         id: this.context.currentUser.id,
         name: name.value,
         email: email.value,
         location: location.value,
-        username() {
-          if (currentUsername === username.value) {
-            return '';
-          } else {
-            return `username: ${username.value}`.toLowerCase();
-          }
-        },
-        password() {
-          if (password.value.length > 0) {
-            return `password: ${password.value}`;
-          } else {
-            return '';
-          }
-        },
+        username: usernameVal.trim(),
+        password: passwordVal.trim(),
         avatar:
           image.value ||
           'https://www.sackettwaconia.com/wp-content/uploads/default-profile.png'
@@ -164,7 +157,7 @@ export default class Login extends React.Component {
           <div className='btn-row'>
             <button className='submitLogin'>Submit Changes</button>
             <Link to='/Login'>
-              <button className='newAccount'>Have an account?</button>
+              <button className='newAccount'>Cancel</button>
             </Link>
           </div>
         </form>

@@ -4,7 +4,6 @@ import '../../Styles/Nav-Menu.css';
 import SmartLogoNav from '../../Assets/smartLogoNav.png';
 import MobileMenu from '../Menus/Mobile-Menu';
 import DesktopMenu from '../Menus/Desktop-Menu';
-import TokenHelper from '../../Helpers/Token';
 import Context from '../Context/Context';
 
 function isMobile() {

@@ -32,7 +32,7 @@ const MarketplaceService = {
   searchListings(knex, term) {
     return knex('listings')
       .select('*')
-      .where('title', 'ilike', term);
+      .where('title', term);
   },
   updateListing(knex, id, updatedData) {
     return knex('listings')

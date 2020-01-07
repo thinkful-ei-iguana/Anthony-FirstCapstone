@@ -42,10 +42,6 @@ export default class DetailedView extends React.Component {
     );
   }
 
-  editAccount = () => {
-    console.log('not setup yet');
-  };
-
   deleteAccount = () => {
     AuthHelper.deleteAccount(this.context.currentUser.username)
       .then(this.context.onLogout)

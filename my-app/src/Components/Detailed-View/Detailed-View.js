@@ -3,7 +3,6 @@ import '../../Styles/Detailed-View.css';
 import ListingHelper from '../../Helpers/Listing';
 import { Link } from 'react-router-dom';
 import Context from '../Context/Context';
-import { format, formatDistanceToNow, toDate } from 'date-fns';
 
 export default class DetailedView extends React.Component {
   constructor(props) {
@@ -21,7 +20,6 @@ export default class DetailedView extends React.Component {
 
   componentDidMount() {
     const { listingid } = this.props.match.params;
-    console.log(listingid);
     ListingHelper.listingById(listingid).then(
       listingData =>
         this.setState({

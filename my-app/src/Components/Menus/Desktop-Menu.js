@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../Styles/Desktop-Menu.css';
 import Context from '../Context/Context';
+import NavSearch from '../Search-Field/Nav-Search-Field';
 
 export default class DesktopMenu extends React.Component {
   static contextType = Context;
@@ -14,12 +15,15 @@ export default class DesktopMenu extends React.Component {
       <div className='desktopMenu'>
         {this.context.isLoggedIn ? (
           <div className='Header__logged-in'>
-            <div class='dropdown'>
-              <button class='dropbtn'>
-                {this.context.currentUser.username}
-                <i class='fa fa-caret-down'></i>
+            <div className='dropdown'>
+              <button className='dropbtn'>
+                <img
+                  className='avatarNavMenu'
+                  src={this.context.currentUser.avatar}
+                  alt='avatar'
+                />
               </button>
-              <div class='dropdown-content'>
+              <div className='dropdown-content'>
                 <Link to={`/user/${this.context.currentUser.username}`}>
                   My Account
                 </Link>
@@ -32,23 +36,15 @@ export default class DesktopMenu extends React.Component {
           </div>
         ) : (
           <div className='Header__logged-out'>
-            <Link to='/login'>Log in</Link>
-            <Link to='/create-account'>Register</Link>
+            <Link className='loginBtn' to='/login'>
+              Log in
+            </Link>
+            <Link className='registerBtn' to='/create-account'>
+              Register
+            </Link>
           </div>
         )}
-        <form className='Desktop-Menu-UserSearchForm'>
-          <label className='field a-field a-field_a2'>
-            <input
-              className='field__input a-field__input'
-              placeholder='Search'
-              required
-            />
-            <span className='a-field__label-wrap'>
-              <span className='a-field__label'>Search</span>
-            </span>
-          </label>
-          <button type='submit'>search</button>
-        </form>
+        <NavSearch history={this.props.history} />
         <div className='DarkMode'>
           <button className='LightModeToggle' onClick={this.context.lightMode}>
             <i className={LightModeToggle}></i>

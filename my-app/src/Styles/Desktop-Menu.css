@@ -11,13 +11,66 @@
     display: inline-block;
   }
 
+  .registerBtn {
+    border: 0;
+    color: #fff;
+    background: #f2912b;
+    background: -webkit-linear-gradient(to left, #f2912b, #ffd200);
+    background: linear-gradient(to left, #f2912b, #ffd200);
+    padding: 5px 10px 5px 10px !important;
+    box-shadow: 0px 2px 6px 0px #a1a1a1;
+    border-radius: 25px;
+    transition: all 0.5s;
+    font-size: calc(-5px + 2vmin) !important;
+    margin-left: 20px;
+    transition: all 0.5s;
+  }
+
+  .loginBtn {
+    color: #fff;
+    transition: all 0.5s;
+  }
+
+  .registerBtn:hover,
+  .loginBtn:hover {
+    transition: all 0.5s;
+    opacity: 50%;
+  }
+
+  .navSearchBar {
+    border: 0;
+    border-radius: 25px;
+    padding: 6px 6px 6px 6px;
+  }
+
+  .Nav-Header .fa-search {
+    margin-left: 12px !important;
+  }
+
   .DarkMode {
     display: inline-block;
     margin-right: 20px;
   }
 
+  .avatarNavMenu {
+    height: 35px;
+    width: 35px;
+    border-radius: 25px 25px 25px 25px;
+    border: 1px solid #fff;
+    background-size: cover;
+    background-position: 50% 50%;
+    transition: 0.5s all;
+  }
+
+  .avatarNavMenu:hover {
+    transition: 0.5s all;
+    opacity: 50%;
+    cursor: pointer;
+  }
+
   .desktopMenu {
-    display: inline;
+    display: inline-flex;
+    align-items: center;
     position: absolute;
     right: 0;
   }
@@ -40,13 +93,12 @@
     display: inline-block !important;
   }
 
-  .desktopMenu * {
+  .desktopMenu > * + * {
     margin-left: 20px;
   }
 
   .Nav-Logo {
-    width: 15%;
-    margin-top: 0.3%;
+    width: 300px;
   }
 
   #Open-Menu {
@@ -58,6 +110,8 @@
     background: #f2912b;
     background: -webkit-linear-gradient(to left, #f2912b, #ffd200);
     background: linear-gradient(to left, #f2912b, #ffd200);
+    display: flex;
+    align-items: center;
     padding: 0px 0px 0px 0px;
     box-shadow: #000 0px -70px 170px 0px;
     position: fixed;
@@ -73,30 +127,26 @@
     display: inline;
   }
 
-  /* The dropdown container */
   .dropdown {
     float: left;
     overflow: hidden;
     display: inline;
   }
 
-  /* Dropdown button */
   .dropdown .dropbtn {
     font-size: 16px;
     border: none;
     outline: none;
     color: white;
     background-color: inherit;
-    font-family: inherit; /* Important for vertical align on mobile phones */
-    margin: 0; /* Important for vertical align on mobile phones */
+    font-family: inherit;
+    margin: 0;
   }
 
-  /* Add a red background color to navbar links on hover */
   .navbar a:hover {
     background-color: red;
   }
 
-  /* Dropdown content (hidden by default) */
   .dropdown-content {
     display: none;
     position: absolute;
@@ -106,7 +156,6 @@
     z-index: 1;
   }
 
-  /* Links inside the dropdown */
   .dropdown-content a {
     float: none;
     color: black;
@@ -116,12 +165,10 @@
     text-align: left;
   }
 
-  /* Add a grey background color to dropdown links on hover */
   .dropdown-content a:hover {
     background-color: #ddd;
   }
 
-  /* Show the dropdown menu on hover */
   .dropdown:hover .dropdown-content {
     display: block;
   }

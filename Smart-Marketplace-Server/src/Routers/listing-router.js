@@ -172,8 +172,7 @@ listingRouter.route('/').post(bodyParser, (req, res, next) => {
 listingRouter.route('/search/:term').get((req, res, next) => {
   const knexInstance = req.app.get('db');
   const { term } = req.params;
-  const value = term.replace('-', ' ');
-  MarketplaceService.searchListings(knexInstance, value).then(data => {
+  MarketplaceService.searchListings(knexInstance, term).then(data => {
     res.json(data);
   });
 });

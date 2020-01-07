@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../Styles/SearchField.css';
 
-export default class Home extends React.Component {
+export default class SearchField extends React.Component {
   static defaultProps = {
     location: {},
     history: {
@@ -33,7 +33,7 @@ export default class Home extends React.Component {
           </span>
         </label>
         <button className='searchSubmit' type='submit'>
-          search
+          <i className='fas fa-search'></i>
         </button>
       </form>
     );

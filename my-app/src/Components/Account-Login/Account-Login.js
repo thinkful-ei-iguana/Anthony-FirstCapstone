@@ -16,11 +16,9 @@ export default class Login extends React.Component {
   state = { error: null };
 
   onLoginSuccess = () => {
-    console.log('success');
     const { location, history } = this.props;
     const destination = (location.state || {}).from || '/Home';
     history.push(destination);
-    console.log(destination);
   };
 
   loginSubmit = e => {

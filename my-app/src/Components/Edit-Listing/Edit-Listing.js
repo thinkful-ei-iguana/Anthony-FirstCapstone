@@ -76,12 +76,10 @@ export default class CreateListing extends React.Component {
   };
 
   nonOwner = () => {
-    console.log('rendering nonowner');
     return <h2>Sorry you're not the owner of this listing</h2>;
   };
 
   owner = () => {
-    console.log('rendering owner');
     return (
       <div className='Creation'>
         <header className='Creation-Header'></header>

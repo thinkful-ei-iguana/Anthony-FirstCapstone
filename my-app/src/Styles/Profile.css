@@ -1,3 +1,40 @@
+@media only screen and (max-width: 768px) {
+  .container {
+    height: 330px !important;
+    width: auto;
+  }
+
+  .section:nth-child(1) {
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    margin-right: 0 !important;
+  }
+
+  .editAccount,
+  .deleteAccount {
+    border: 0;
+    background: #f2912b;
+    background: -webkit-linear-gradient(to left, #f2912b, #ffd200);
+    background: linear-gradient(to left, #f2912b, #ffd200);
+    padding: 5px 10px 5px 10px !important;
+    box-shadow: 0px 2px 6px 0px #a1a1a1;
+    border-radius: 25px;
+    transition: all 0.5s;
+    font-size: calc(5px + 2vmin) !important;
+    margin-bottom: 50px;
+  }
+
+  .editAccount {
+    margin-right: 50px !important;
+  }
+
+  .item {
+    margin-left: 0 !important;
+    text-align: center;
+  }
+}
+
 .Profile {
   background-color: transparent;
   display: -ms-flexbox;
@@ -32,7 +69,7 @@
   box-shadow: 0px 2px 6px 0px #a1a1a1;
   border-radius: 25px;
   transition: all 0.5s;
-  font-size: calc(-5px + 2vmin) !important;
+  font-size: calc(-5px + 2vmin);
 }
 
 .editAccount {
