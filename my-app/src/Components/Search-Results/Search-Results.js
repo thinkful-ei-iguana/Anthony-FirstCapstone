@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../Styles/Search-Results.css';
+import './Search-Results.css';
 import ListingHelper from '../../Helpers/Listing';
 import SearchField from '../Search-Field/Search-Field';
 import Listing from '../Listing/Listing';
@@ -34,7 +34,9 @@ export default class SearchResults extends React.Component {
         </header>
         <section className='Search-ResultsList'>
           {this.state.filteredListings.map(listing => (
-            <Listing key={listing.id} {...listing} />
+            <div className='Results-item'>
+              <Listing key={listing.id} {...listing} />
+            </div>
           ))}
         </section>
       </div>

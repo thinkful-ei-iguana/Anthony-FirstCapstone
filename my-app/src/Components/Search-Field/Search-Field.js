@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../Styles/SearchField.css';
+import './SearchField.css';
 
 export default class SearchField extends React.Component {
   static defaultProps = {

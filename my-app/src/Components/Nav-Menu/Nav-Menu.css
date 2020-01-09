@@ -1,0 +1,18 @@
+@media only screen and (max-width: 768px) {
+  .Nav-Header {
+    position: fixed;
+    top: 0;
+    z-index: 99;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .fa-bars {
+    display: none;
+  }
+}
+
+.Nav-Header button {
+  background: transparent;
+  border: 0;
+}

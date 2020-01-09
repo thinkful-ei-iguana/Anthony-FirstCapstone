@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../Styles/NavSearchField.css';
+import './NavSearchField.css';
 import { withRouter } from 'react-router-dom';
 
 class NavSearch extends React.Component {

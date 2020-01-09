@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../../Styles/Mobile-Menu.css';
+import './Mobile-Menu.css';
 import Context from '../Context/Context';
 import NavSearch from '../Search-Field/Nav-Search-Field';
 

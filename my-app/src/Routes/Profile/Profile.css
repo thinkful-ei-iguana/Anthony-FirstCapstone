@@ -1,0 +1,180 @@
+.container {
+  height: 330px !important;
+  width: 100%;
+}
+
+.section:nth-child(1) {
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+  margin-right: 0 !important;
+}
+
+.editAccount,
+.deleteAccount {
+  border: 0;
+  background: #f2912b;
+  background: -webkit-linear-gradient(to left, #f2912b, #ffd200);
+  background: linear-gradient(to left, #f2912b, #ffd200);
+  padding: 5px 10px 5px 10px !important;
+  box-shadow: 0px 2px 6px 0px #a1a1a1;
+  border-radius: 25px;
+  transition: all 0.5s;
+  font-size: calc(5px + 2vmin) !important;
+  margin-bottom: 50px;
+}
+
+.editAccount {
+  float: left;
+}
+
+.deleteAccount {
+  float: right;
+}
+
+.Profile {
+  background-color: transparent;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-content: flex-start;
+  -ms-flex-line-pack: flex-start;
+  align-content: flex-start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  height: 100vh;
+  margin-top: 100px;
+}
+
+.editAccount,
+.deleteAccount {
+  border: 0;
+  background: #f2912b;
+  background: -webkit-linear-gradient(to left, #f2912b, #ffd200);
+  background: linear-gradient(to left, #f2912b, #ffd200);
+  padding: 10px 20px 10px 20px;
+  box-shadow: 0px 2px 6px 0px #a1a1a1;
+  border-radius: 25px;
+  transition: all 0.5s;
+  font-size: calc(5px + 2vmin);
+}
+
+.editAccount {
+  float: left;
+}
+
+.deleteAccount {
+  float: right;
+}
+
+.deleteAccount:hover,
+.editAccount:hover {
+  opacity: 50%;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.section {
+  width: 70%;
+}
+
+.Profile h1 {
+  text-align: center;
+  font-weight: 100;
+}
+
+.container {
+  padding: 10px;
+  box-shadow: 0px 11px 21px -8px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  margin-bottom: 30px;
+  height: 500px;
+  width: 250px;
+}
+
+.avatar {
+  height: 250px;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  background-size: cover;
+  background-position: 50% 10%;
+}
+
+.listing {
+  overflow: auto;
+  height: 500px;
+}
+
+.item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 0 !important;
+}
+
+.Profile-Result-item:nth-child(1) {
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  align-self: auto;
+}
+
+.Profile-Results-item {
+  margin: 20px;
+  width: 100%;
+}
+
+.container span {
+  display: block !important;
+}
+
+.section:nth-child(1) {
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+}
+
+@media only screen and (min-width: 1200px) {
+  .section:nth-child(1) {
+    margin-right: 100px !important;
+  }
+
+  .section {
+    width: 20% !important;
+  }
+
+  .editAccount,
+  .deleteAccount {
+    font-size: calc(-2px + 2vmin) !important;
+  }
+
+  .container {
+    height: 500px !important;
+    width: 100%;
+  }
+
+  .avatar {
+    height: 370px;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    background-size: cover;
+    background-position: 50% 10%;
+    margin-bottom: 20px;
+  }
+}

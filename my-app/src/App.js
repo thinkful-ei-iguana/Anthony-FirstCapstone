@@ -1,20 +1,20 @@
 import React from 'react';
-import './Styles/App.css';
+import './App.css';
 import { Route } from 'react-router-dom';
 import NavMenu from './Components/Nav-Menu/Nav-Menu';
-import Landing from './Components/Landing/Landing';
-import Home from './Components/Home/Home';
-import AccountCreation from './Components/Account-Creation/Account-Creation';
-import AccountLogin from './Components/Account-Login/Account-Login';
-import DetailedView from './Components/Detailed-View/Detailed-View';
+import Landing from './Routes/Landing/Landing';
+import Home from './Routes/Home/Home';
+import AccountCreation from './Routes/Account-Creation/Account-Creation';
+import AccountLogin from './Routes/Account-Login/Account-Login';
+import DetailedView from './Routes/Detailed-View/Detailed-View';
 import SearchResults from './Components/Search-Results/Search-Results';
 import AuthHelper from './Helpers/Auth';
 import Context from './Components/Context/Context';
 import config from './config';
-import CreateListing from './Components/Create-Listing/Create-Listing';
-import Profile from './Components/Profile/Profile';
-import EditListing from './Components/Edit-Listing/Edit-Listing';
-import EditAccount from './Components/Edit-Account/Edit-Account';
+import CreateListing from './Routes/Create-Listing/Create-Listing';
+import Profile from './Routes/Profile/Profile';
+import EditListing from './Routes/Edit-Listing/Edit-Listing';
+import EditAccount from './Routes/Edit-Account/Edit-Account';
 
 class App extends React.Component {
   constructor(props) {

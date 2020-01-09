@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../../Styles/Nav-Menu.css';
+import './Nav-Menu.css';
 import SmartLogoNav from '../../Assets/smartLogoNav.png';
 import MobileMenu from '../Menus/Mobile-Menu';
 import DesktopMenu from '../Menus/Desktop-Menu';

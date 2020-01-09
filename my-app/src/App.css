@@ -1,0 +1,30 @@
+:root {
+  --bg: #feffff;
+  --buttons: #f2912b;
+  --alt-buttons: #ffd200;
+  --text: #312c32;
+  --alt-text: #555;
+  --alt-bg: #fff;
+}
+
+[data-theme='dark'] {
+  --bg: #222831;
+  --alt-bg: #393e46;
+  --alt-text: #fff;
+  --text: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+a,
+button {
+  text-decoration: none;
+  color: black;
+}
+
+.App {
+  background: var(--bg);
+}

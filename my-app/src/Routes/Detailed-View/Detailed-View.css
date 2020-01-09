@@ -1,0 +1,112 @@
+.view {
+  background-color: transparent;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-content: flex-start;
+  -ms-flex-line-pack: flex-start;
+  align-content: flex-start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  height: 100vh;
+  margin-top: 100px;
+}
+
+.section {
+  width: 80%;
+}
+
+.owner span,
+.owner a {
+  display: inline;
+}
+
+.container {
+  margin-left: -10px;
+  padding: 10px;
+  box-shadow: 0px 11px 21px -8px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  margin-bottom: 30px;
+  height: 330px !important;
+  width: 100% !important;
+}
+
+.listing-header,
+.listing-title {
+  text-align: center;
+  font-weight: 100;
+  text-transform: uppercase;
+}
+
+.section:nth-child(1) {
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+}
+
+.image {
+  height: 100%;
+  width: 100% !important;
+  border-radius: 10px 10px 10px 10px;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.editListing,
+.deleteListing {
+  border: 0;
+  background: #f2912b;
+  background: -webkit-linear-gradient(to left, #f2912b, #ffd200);
+  background: linear-gradient(to left, #f2912b, #ffd200);
+  padding: 10px 20px 10px 20px;
+  box-shadow: 0px 2px 6px 0px #a1a1a1;
+  border-radius: 25px;
+  transition: all 0.5s;
+  font-size: calc(5px + 2vmin) !important;
+  margin-bottom: 15px;
+}
+
+.deleteListing {
+  float: left;
+}
+
+.editListing {
+  float: right;
+}
+.deleteListing:hover,
+.editListing:hover {
+  opacity: 50%;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.ownerButtons {
+  margin-top: 15px;
+}
+
+/* Desktop Media Queries */
+@media only screen and (min-width: 1200px) {
+  .section {
+    width: 30% !important;
+  }
+
+  .container {
+    margin-left: -10px;
+    height: 500px !important;
+  }
+
+  .editListing,
+  .deleteListing {
+    font-size: calc(-2px + 2vmin) !important;
+  }
+}

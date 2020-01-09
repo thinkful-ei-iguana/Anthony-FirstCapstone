@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../../Styles/Desktop-Menu.css';
+import './Desktop-Menu.css';
 import Context from '../Context/Context';
 import NavSearch from '../Search-Field/Nav-Search-Field';
 
