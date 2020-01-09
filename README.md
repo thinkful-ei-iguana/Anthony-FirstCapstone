@@ -22,6 +22,6 @@ Smart Marketplace is a resell website for clothing where users can post or shopp
 
 ## Connect with me
 
-[My Linkedin](https://www.linkedin.com/in/anthonytb/)
+> [My Linkedin](https://www.linkedin.com/in/anthonytb/)
 
-[My Email](mailto://anthonytb97@gmail.com)
+> [My Email](mailto://anthonytb97@gmail.com)
