@@ -28,16 +28,15 @@ export default class Login extends React.Component {
   componentDidMount() {
     if (!this.context.hasAuthToken()) {
       this.props.history.push('/Login');
+    } else {
+      this.setState({
+        name: this.context.currentUser.name,
+        email: this.context.currentUser.email,
+        location: this.context.currentUser.location,
+        username: this.context.currentUser.username,
+        avatar: this.context.currentUser.avatar
+      });
     }
-    this.setState({
-      name: this.context.currentUser.name,
-      email: this.context.currentUser.email,
-      location: this.context.currentUser.location,
-      username: this.context.currentUser.username,
-      avatar: this.context.currentUser.avatar
-    }).catch(res => {
-      this.setState({ error: res.error });
-    });
   }
 
   handleRegistrationSuccess = user => {
@@ -136,7 +135,7 @@ export default class Login extends React.Component {
               <span className='a-field__label'>Username</span>
             </span>
           </label>
-          <label className='field a-field a-field_a2'>
+          <label className='field a-field a-field_a2 passwordSection'>
             <input
               className='field__input a-field__input'
               name='password'
@@ -147,6 +146,9 @@ export default class Login extends React.Component {
               <span className='a-field__label'>Password</span>
             </span>
           </label>
+          <span className='passwordHint'>
+            Must include 1 Uppercase, 1 Lowercase, 1 Special Character
+          </span>
           <label className='field a-field a-field_a2'>
             <input
               className='field__input a-field__input'

@@ -16,13 +16,11 @@ export default class CreateListing extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      listing: {}
-    };
+    this.state = {};
   }
 
   ownerCheck = () => {
-    if (this.context.currentUser.id !== this.state.listing.owner) {
+    if (this.context.currentUser.id !== this.state.owner) {
       return this.nonOwner();
     } else {
       return this.owner();
@@ -34,13 +32,32 @@ export default class CreateListing extends React.Component {
       this.props.history.push('/Login');
     }
     ListingHelper.listingById(this.props.match.params.listingid).then(data => {
-      this.setState({ listing: data });
+      this.setState({
+        title: data.title,
+        id: data.id,
+        category: data.category,
+        owner: data.owner,
+        price: data.price,
+        condition: data.condition,
+        location: data.location,
+        description: data.description,
+        image: data.image,
+        date_created: data.date_created,
+        page_views: data.page_views
+      });
     });
   }
 
   handleEditSuccess = () => {
     const { history } = this.props;
     history.push('/Home');
+  };
+
+  handleChange = ev => {
+    ev.preventDefault();
+    this.setState({
+      [ev.target.name]: ev.target.name.value
+    });
   };
 
   editSubmit = ev => {
@@ -53,15 +70,13 @@ export default class CreateListing extends React.Component {
         title: title.value,
         category: category.value,
         owner: this.context.currentUser.id,
-        price: '$' + price.value,
-        date_created: new Date(),
+        price: price.value,
         condition: condition.value,
         location: this.context.currentUser.location,
         description: description.value,
-        image: image.value,
-        page_views: 0
+        image: image.value
       },
-      this.state.listing.id
+      this.state.id
     )
       .then(listing => {
         title.value = '';
@@ -86,11 +101,16 @@ export default class CreateListing extends React.Component {
           <h1>Edit Listing</h1>
         </header>
         <h4 className='errorHandlerEditListing'>{this.state.error}</h4>
-        <form className='Creation-Form' onSubmit={this.editSubmit}>
+        <form
+          className='Creation-Form'
+          onSubmit={this.editSubmit}
+          onChange={this.handleChange}
+        >
           <label className='field a-field a-field_a2'>
             <input
               className='field__input a-field__input'
               required
+              value={this.state.title}
               name='title'
               placeholder='Title'
             />
@@ -100,10 +120,8 @@ export default class CreateListing extends React.Component {
           </label>
           <label className='categoryLabel'>Item Category</label>
           <div className='select'>
-            <select name='category'>
-              <option selected disabled>
-                Choose an option
-              </option>
+            <select name='category' selected={this.state.category}>
+              <option disabled>Choose an option</option>
               <option value='1'>Shirts</option>
               <option value='2'>Pants</option>
               <option value='3'>Jackets</option>
@@ -114,8 +132,7 @@ export default class CreateListing extends React.Component {
           <label className='field a-field a-field_a2'>
             <input
               className='field__input a-field__input'
-              required
-              type='number'
+              value={this.state.price}
               name='price'
               placeholder='Price'
             />
@@ -127,6 +144,7 @@ export default class CreateListing extends React.Component {
             <input
               className='field__input a-field__input'
               required
+              value={this.state.condition}
               type='text'
               name='condition'
               placeholder='Condition'
@@ -139,6 +157,7 @@ export default class CreateListing extends React.Component {
             <input
               className='field__input a-field__input'
               required
+              value={this.state.description}
               type='textfield'
               name='description'
               placeholder='Description'
@@ -151,6 +170,7 @@ export default class CreateListing extends React.Component {
             <input
               className='field__input a-field__input'
               required
+              value={this.state.image}
               type='text'
               name='image'
               placeholder='Image url'

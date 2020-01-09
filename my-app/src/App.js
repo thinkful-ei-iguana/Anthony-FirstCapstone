@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import NavMenu from './Components/Nav-Menu/Nav-Menu';
 import Landing from './Routes/Landing/Landing';
 import Home from './Routes/Home/Home';
@@ -97,79 +97,81 @@ class App extends React.Component {
         {' '}
         <div className='App'>
           <NavMenu />
-          <Route
-            exact
-            path='/'
-            render={routeProps => {
-              return <Landing {...routeProps} />;
-            }}
-          />
-          <Route
-            exact
-            path='/Home'
-            render={routeProps => {
-              return <Home {...routeProps} />;
-            }}
-          />
-          <Route
-            exact
-            path='/Login'
-            render={routeProps => {
-              return <AccountLogin {...routeProps} />;
-            }}
-          />
-          <Route
-            exact
-            path='/Create-Account'
-            render={routeProps => {
-              return <AccountCreation {...routeProps} />;
-            }}
-          />
-          <Route
-            exact
-            path='/Edit-Account'
-            render={routeProps => {
-              return <EditAccount {...routeProps} />;
-            }}
-          />
-          <Route
-            exact
-            path='/user/:username'
-            render={routeProps => {
-              return <Profile {...routeProps} />;
-            }}
-          />
-          <Route
-            exact
-            path='/Search/:term'
-            render={routeProps => {
-              return <SearchResults {...routeProps} />;
-            }}
-          />
-          <Route
-            path='/Create-Listing'
-            render={routeProps => {
-              return <CreateListing {...routeProps} />;
-            }}
-          />
-          <Route
-            path='/listing/:listingid'
-            render={routeProps => {
-              return <DetailedView {...routeProps} />;
-            }}
-          />
-          <Route
-            exact
-            path='/Edit-Listing/:listingid'
-            render={routeProps => {
-              return <EditListing {...routeProps} />;
-            }}
-          />
-          <Route
-            render={routeProps => {
-              return <NotFound {...routeProps} />;
-            }}
-          />
+          <Switch>
+            <Route
+              exact
+              path='/'
+              render={routeProps => {
+                return <Landing {...routeProps} />;
+              }}
+            />
+            <Route
+              exact
+              path='/Home'
+              render={routeProps => {
+                return <Home {...routeProps} />;
+              }}
+            />
+            <Route
+              exact
+              path='/Login'
+              render={routeProps => {
+                return <AccountLogin {...routeProps} />;
+              }}
+            />
+            <Route
+              exact
+              path='/Create-Account'
+              render={routeProps => {
+                return <AccountCreation {...routeProps} />;
+              }}
+            />
+            <Route
+              exact
+              path='/Edit-Account'
+              render={routeProps => {
+                return <EditAccount {...routeProps} />;
+              }}
+            />
+            <Route
+              exact
+              path='/user/:username'
+              render={routeProps => {
+                return <Profile {...routeProps} />;
+              }}
+            />
+            <Route
+              exact
+              path='/Search/:term'
+              render={routeProps => {
+                return <SearchResults {...routeProps} />;
+              }}
+            />
+            <Route
+              path='/Create-Listing'
+              render={routeProps => {
+                return <CreateListing {...routeProps} />;
+              }}
+            />
+            <Route
+              path='/listing/:listingid'
+              render={routeProps => {
+                return <DetailedView {...routeProps} />;
+              }}
+            />
+            <Route
+              exact
+              path='/Edit-Listing/:listingid'
+              render={routeProps => {
+                return <EditListing {...routeProps} />;
+              }}
+            />
+            <Route
+              render={routeProps => {
+                return <NotFound {...routeProps} />;
+              }}
+            />
+          </Switch>
         </div>
       </Context.Provider>
     );

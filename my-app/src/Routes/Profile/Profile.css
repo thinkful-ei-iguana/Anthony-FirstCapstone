@@ -154,6 +154,10 @@
   color: red;
 }
 
+.noListing {
+  text-align: center;
+}
+
 .section:nth-child(1) {
   -webkit-order: 0;
   -ms-flex-order: 0;
