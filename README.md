@@ -9,12 +9,15 @@ Smart Marketplace is a resell website for clothing where users can post or shopp
 ## What did I use to build the app?
 
 Front-End Tech: ReactJS, CSS
+
 Back-End Tech: NodeJS, ExpressJS, KnexJS, PostgreSQL
+
 Testing Tech: Mocha & Chai
 
 ## Upcoming features
 
 Favorite System for listings
+
 Integrating InstantSearch
 
 ## Connect with me
