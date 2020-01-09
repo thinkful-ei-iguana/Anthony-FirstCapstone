@@ -16,9 +16,9 @@ Smart Marketplace is a resell website for clothing where users can post or shopp
 
 ## Upcoming features
 
-- Favorite System for listings
+> Favorite System for listings
 
-- Integrating InstantSearch
+> Integrating InstantSearch
 
 ## Connect with me
 
