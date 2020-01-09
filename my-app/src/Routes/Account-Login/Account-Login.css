@@ -33,6 +33,10 @@
   float: right;
 }
 
+.errorHandlerLogin {
+  color: red;
+}
+
 .field {
   --uiFieldPlaceholderColor: var(--fieldPlaceholderColor, #767676);
 }

@@ -53,6 +53,7 @@ export default class Login extends React.Component {
         <header className='Creation-Header'>
           <h1>Create An Account</h1>
         </header>
+        <h4 className='errorHandlerCreateAccount'>{this.state.error}</h4>
         <form className='Creation-Form' onSubmit={this.createSubmit}>
           <label className='field a-field a-field_a2'>
             <input

@@ -29,6 +29,10 @@
   border: 0;
 }
 
+.errorHandlerCreateAccount {
+  color: red;
+}
+
 .field {
   --uiFieldPlaceholderColor: var(--fieldPlaceholderColor, #767676);
 }

@@ -25,6 +25,22 @@ export default class SearchResults extends React.Component {
     });
   }
 
+  ifResults = () => {
+    if (this.state.filteredListings.length > 0) {
+      return this.state.filteredListings.map(listing => (
+        <div className='Results-item'>
+          <Listing key={listing.id} {...listing} />
+        </div>
+      ));
+    } else {
+      return (
+        <h3 className='noResults'>
+          Sorry couldn't find a active listing with that name
+        </h3>
+      );
+    }
+  };
+
   render() {
     console.log(this.state.filteredListings);
     return (
@@ -32,13 +48,7 @@ export default class SearchResults extends React.Component {
         <header className='Search-Header'>
           <SearchField />
         </header>
-        <section className='Search-ResultsList'>
-          {this.state.filteredListings.map(listing => (
-            <div className='Results-item'>
-              <Listing key={listing.id} {...listing} />
-            </div>
-          ))}
-        </section>
+        <section className='Search-ResultsList'>{this.ifResults()}</section>
       </div>
     );
   }

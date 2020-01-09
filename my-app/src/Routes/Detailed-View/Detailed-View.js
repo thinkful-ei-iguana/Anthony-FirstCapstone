@@ -55,56 +55,70 @@ export default class DetailedView extends React.Component {
     }
   };
 
-  render() {
-    return (
-      <div className='view'>
-        <div className='section'>
-          <h1 className='listing-title'>{this.state.listing.title}</h1>
-          <div className='container'>
-            <div
-              className='image'
-              style={{
-                backgroundImage: `url(${this.state.listing.image})`
-              }}
-            />
-          </div>
-        </div>
-        <div className='section'>
-          <h1 className='listing-header'>LISTING DETAILS</h1>
-          <div className='container'>
-            <h2 className='item-title'>{this.state.listing.title}</h2>
-            <span className='view-counter'>
-              <i class='far fa-eye'></i> {this.state.listing.page_views}
-            </span>
-            <span className='item-price'>
-              {' '}
-              {`${this.state.owner.username} is wanting ${this.state.listing.price} for this item`}
-            </span>
-            <span className='item-condition'>
-              Item is {this.state.listing.condition}
-            </span>
-            <span className='item-date_created'>
-              Posted On:{' '}
-              {
-                new Date(this.state.listing.date_created)
-                  .toLocaleString()
-                  .split(',')[0]
-              }
-            </span>
-            <p className='item-description'>{this.state.listing.description}</p>
-            <div className='owner'>
-              <span>Posted By: </span>
-              <Link
-                to={`/user/${this.state.owner.username}`}
-                className='item-owner'
-              >
-                {this.state.owner.username}
-              </Link>
+  ifVaildListing = () => {
+    if (this.state.listing.id > 0) {
+      return (
+        <div className='view'>
+          <div className='section'>
+            <h1 className='listing-title'>{this.state.listing.title}</h1>
+            <div className='container'>
+              <div
+                className='image'
+                style={{
+                  backgroundImage: `url(${this.state.listing.image})`
+                }}
+              />
             </div>
           </div>
-          {this.ownerOption()}
+          <div className='section'>
+            <h1 className='listing-header'>LISTING DETAILS</h1>
+            <div className='container'>
+              <h2 className='item-title'>{this.state.listing.title}</h2>
+              <span className='view-counter'>
+                <i class='far fa-eye'></i> {this.state.listing.page_views}
+              </span>
+              <span className='item-price'>
+                {' '}
+                {`${this.state.owner.username} is wanting ${this.state.listing.price} for this item`}
+              </span>
+              <span className='item-condition'>
+                Item is {this.state.listing.condition}
+              </span>
+              <span className='item-date_created'>
+                Posted On:{' '}
+                {
+                  new Date(this.state.listing.date_created)
+                    .toLocaleString()
+                    .split(',')[0]
+                }
+              </span>
+              <p className='item-description'>
+                {this.state.listing.description}
+              </p>
+              <div className='owner'>
+                <span>Posted By: </span>
+                <Link
+                  to={`/user/${this.state.owner.username}`}
+                  className='item-owner'
+                >
+                  {this.state.owner.username}
+                </Link>
+              </div>
+            </div>
+            {this.ownerOption()}
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <h3 className='noSuchListing'>
+          Couldn't find a listing with that id. Please check your url path.
+        </h3>
+      );
+    }
+  };
+
+  render() {
+    return <div>{this.ifVaildListing()}</div>;
   }
 }

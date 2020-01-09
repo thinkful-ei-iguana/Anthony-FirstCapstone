@@ -144,6 +144,16 @@
   display: block !important;
 }
 
+.noSuchUser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  color: red;
+}
+
 .section:nth-child(1) {
   -webkit-order: 0;
   -ms-flex-order: 0;

@@ -261,6 +261,14 @@ select {
   width: 70%;
 }
 
+.Creation-Header h1 {
+  margin-top: 350px;
+}
+
+.errorHandlerCreateListing {
+  color: red;
+}
+
 @media only screen and (min-width: 1200px) {
   .select {
     width: 100% !important;

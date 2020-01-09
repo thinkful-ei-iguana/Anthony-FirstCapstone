@@ -1,6 +1,6 @@
 @media only screen and (max-width: 768px) {
   .Search-Results {
-    margin-top: 100px;
+    padding-top: 100px;
   }
 }
 
@@ -11,6 +11,7 @@
   justify-content: center;
   text-align: center;
   height: 100vh;
+  padding-top: 100px;
 }
 
 .Search-ResultsList {
@@ -33,4 +34,27 @@
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+.Result-item:nth-child(1) {
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  align-self: auto;
+}
+
+.Results-item {
+  margin: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .Results-item {
+    margin: 20px;
+    width: 100%;
+  }
 }

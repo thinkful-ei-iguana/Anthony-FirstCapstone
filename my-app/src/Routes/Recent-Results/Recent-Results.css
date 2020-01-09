@@ -23,3 +23,8 @@
 .Result-container li {
   list-style: none;
 }
+
+.Results-item {
+  margin: 20px;
+  width: 20%;
+}

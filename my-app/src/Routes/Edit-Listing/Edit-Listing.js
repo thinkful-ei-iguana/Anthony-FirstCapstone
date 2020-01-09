@@ -85,6 +85,7 @@ export default class CreateListing extends React.Component {
         <header className='Edit-Listing-Header'>
           <h1>Edit Listing</h1>
         </header>
+        <h4 className='errorHandlerEditListing'>{this.state.error}</h4>
         <form className='Creation-Form' onSubmit={this.editSubmit}>
           <label className='field a-field a-field_a2'>
             <input

@@ -65,6 +65,61 @@ export default class DetailedView extends React.Component {
     }
   };
 
+  ifValidProfile = () => {
+    if (this.state.profileData.id > 0) {
+      return (
+        <div className='Profile'>
+          <div className='section'>
+            <h1 className='profile-name'>
+              MEET {this.state.firstName.toUpperCase()}
+            </h1>
+            <div className='container profile'>
+              <div
+                className='avatar'
+                style={{
+                  backgroundImage: `url(${this.state.profileData.avatar})`
+                }}
+              />
+              <a
+                className='profile-email'
+                href={`mailto://${this.state.profileData.email}`}
+              >
+                {this.state.profileData.email}
+              </a>
+              <span className='profile-location'>
+                Located in: {this.state.profileData.location}
+              </span>
+              <span className='profile-date_created'>
+                Member Since:{' '}
+                {
+                  new Date(this.state.profileData.date_created)
+                    .toLocaleString()
+                    .split(',')[0]
+                }
+              </span>
+            </div>
+            {this.accountOption()}
+          </div>
+          <div className='section'>
+            <h1>FOR SALE</h1>
+            <div className='container listing'>
+              {this.state.myListings.length > 0
+                ? this.renderListing()
+                : this.renderNoListing()}
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <h3 className='noSuchUser'>
+          Sorry couldn't find a user with that username. Please check your url
+          path.
+        </h3>
+      );
+    }
+  };
+
   renderListing = () => {
     return this.state.myListings.map(listing => {
       return (
@@ -86,48 +141,6 @@ export default class DetailedView extends React.Component {
   };
 
   render() {
-    return (
-      <div className='Profile'>
-        <div className='section'>
-          <h1 className='profile-name'>
-            MEET {this.state.firstName.toUpperCase()}
-          </h1>
-          <div className='container profile'>
-            <div
-              className='avatar'
-              style={{
-                backgroundImage: `url(${this.state.profileData.avatar})`
-              }}
-            />
-            <a
-              className='profile-email'
-              href={`mailto://${this.state.profileData.email}`}
-            >
-              {this.state.profileData.email}
-            </a>
-            <span className='profile-location'>
-              Located in: {this.state.profileData.location}
-            </span>
-            <span className='profile-date_created'>
-              Member Since:{' '}
-              {
-                new Date(this.state.profileData.date_created)
-                  .toLocaleString()
-                  .split(',')[0]
-              }
-            </span>
-          </div>
-          {this.accountOption()}
-        </div>
-        <div className='section'>
-          <h1>FOR SALE</h1>
-          <div className='container listing'>
-            {this.state.myListings.length > 0
-              ? this.renderListing()
-              : this.renderNoListing()}
-          </div>
-        </div>
-      </div>
-    );
+    return <div>{this.ifValidProfile()}</div>;
   }
 }

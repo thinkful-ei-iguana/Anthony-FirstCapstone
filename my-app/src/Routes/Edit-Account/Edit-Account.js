@@ -35,6 +35,8 @@ export default class Login extends React.Component {
       location: this.context.currentUser.location,
       username: this.context.currentUser.username,
       avatar: this.context.currentUser.avatar
+    }).catch(res => {
+      this.setState({ error: res.error });
     });
   }
 
@@ -83,6 +85,7 @@ export default class Login extends React.Component {
         <header className='Edit-Account-Header'>
           <h1>Edit Your Account Information</h1>
         </header>
+        <h4 className='errorHandlerEditAccount'>{this.state.error}</h4>
         <form
           className='Edit-Form'
           onSubmit={this.createSubmit}

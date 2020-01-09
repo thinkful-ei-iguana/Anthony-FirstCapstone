@@ -15,6 +15,7 @@ import CreateListing from './Routes/Create-Listing/Create-Listing';
 import Profile from './Routes/Profile/Profile';
 import EditListing from './Routes/Edit-Listing/Edit-Listing';
 import EditAccount from './Routes/Edit-Account/Edit-Account';
+import NotFound from './Routes/NotFound/NotFound';
 
 class App extends React.Component {
   constructor(props) {
@@ -162,6 +163,11 @@ class App extends React.Component {
             path='/Edit-Listing/:listingid'
             render={routeProps => {
               return <EditListing {...routeProps} />;
+            }}
+          />
+          <Route
+            render={routeProps => {
+              return <NotFound {...routeProps} />;
             }}
           />
         </div>
