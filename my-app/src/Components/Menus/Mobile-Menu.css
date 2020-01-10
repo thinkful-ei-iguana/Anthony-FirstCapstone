@@ -178,5 +178,9 @@
     display: inline;
   }
 
+  button i {
+    color: var(--text);
+  }
+
   /* End Dark/Light Toggle */
 }

@@ -10,8 +10,8 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  height: 100vh;
   padding-top: 100px;
+  height: 100%;
 }
 
 .Search-ResultsList {
@@ -56,5 +56,9 @@
   .Results-item {
     margin: 20px;
     width: 100%;
+  }
+
+  .Search-Results {
+    height: 100%;
   }
 }

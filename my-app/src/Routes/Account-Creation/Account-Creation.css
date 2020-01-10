@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  height: 100vh;
+  height: 100%;
   color: var(--text);
 }
 
@@ -242,7 +242,12 @@ LEVEL 4. SETTINGS
   .Creation-Form {
     width: 20% !important;
   }
+
+  .Creation {
+    height: 100%;
+  }
+
   .Creation-Header {
-    margin-top: 180px;
+    margin-top: 0;
   }
 }

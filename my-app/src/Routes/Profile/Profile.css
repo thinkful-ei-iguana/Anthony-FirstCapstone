@@ -52,7 +52,7 @@
   -webkit-align-items: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  height: 100vh;
+  height: 100%;
   padding-top: 100px;
 }
 
@@ -195,5 +195,9 @@
     background-size: cover;
     background-position: 50% 10%;
     margin-bottom: 20px;
+  }
+
+  .Profile {
+    height: 100%;
   }
 }

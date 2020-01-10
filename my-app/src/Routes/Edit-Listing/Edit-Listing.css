@@ -265,7 +265,7 @@ select {
   align-items: center;
   justify-content: center;
   text-align: center;
-  height: 100vh;
+  height: 100%;
   width: 95%;
   margin: auto auto;
 }
@@ -279,6 +279,10 @@ select {
 
 @media only screen and (min-width: 1200px) {
   .Edit-Listing-Header h1 {
-    padding-top: 300px !important;
+    padding-top: 100px !important;
+  }
+
+  .Edit-Listing {
+    height: 100% !important;
   }
 }

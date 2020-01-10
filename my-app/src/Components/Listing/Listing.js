@@ -6,8 +6,8 @@ export default function Listing(props) {
   // Shortens description if to long
   function truncateDesc(text) {
     const words = text.split('');
-    if (words.length > 35) {
-      return words.slice(0, 35).join('') + ' ...';
+    if (words.length > 25) {
+      return words.slice(0, 25).join('') + ' ...';
     }
     return text;
   }
@@ -15,8 +15,8 @@ export default function Listing(props) {
   // Shortens title if to long
   function truncateTitle(text) {
     const words = text.split('');
-    if (words.length > 25) {
-      return words.slice(0, 20).join('') + ' ...';
+    if (words.length > 10) {
+      return words.slice(0, 10).join('') + ' ...';
     }
     return text;
   }

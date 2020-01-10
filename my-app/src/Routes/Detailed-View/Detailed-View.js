@@ -99,7 +99,7 @@ export default class DetailedView extends React.Component {
                 {this.state.listing.description}
               </p>
               <div className='owner'>
-                <span>Posted By: </span>
+                Posted By:{' '}
                 <Link
                   to={`/user/${this.state.owner.username}`}
                   className='item-owner'

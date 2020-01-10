@@ -18,13 +18,12 @@
   -webkit-align-items: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  height: 100vh;
+  height: 100%;
   padding-top: 100px;
 }
 
 .item-owner {
   color: #f2912b;
-  display: inline;
 }
 
 .section {
@@ -34,7 +33,7 @@
 
 .owner span,
 .owner a {
-  display: inline;
+  display: inline !important;
 }
 
 .container {

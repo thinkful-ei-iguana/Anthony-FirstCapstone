@@ -2,9 +2,15 @@
   .searchSubmit {
     margin-left: 20px !important;
   }
+
+  .SearchForm {
+    padding-top: 0 !important;
+    margin-bottom: 100px;
+  }
 }
 
 .SearchForm {
+  padding-top: 200px;
   margin-bottom: 100px;
 }
 
