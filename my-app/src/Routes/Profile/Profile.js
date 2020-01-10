@@ -12,7 +12,8 @@ export default class DetailedView extends React.Component {
     this.state = {
       profileData: {},
       firstName: '',
-      myListings: []
+      myListings: [],
+      isLoading: true
     };
   }
 
@@ -39,7 +40,10 @@ export default class DetailedView extends React.Component {
           firstName: data.name.split(' ')[0]
         }) +
         ListingHelper.getAllMyListings(data.id).then(listingData => {
-          this.setState({ myListings: listingData });
+          this.setState({
+            myListings: listingData,
+            isLoading: false
+          });
         })
     );
   }
@@ -67,6 +71,15 @@ export default class DetailedView extends React.Component {
         </div>
       );
     }
+  };
+
+  // renders loading til fetch call returns
+  Loading = () => {
+    return this.state.isLoading ? (
+      <h3 className='Loading'>Loading...</h3>
+    ) : (
+      this.ifValidProfile()
+    );
   };
 
   // checks if the username from url param has an id if so it renders the profile, if not it renders a error message
@@ -148,6 +161,6 @@ export default class DetailedView extends React.Component {
   };
 
   render() {
-    return <div>{this.ifValidProfile()}</div>;
+    return <div>{this.Loading()}</div>;
   }
 }
