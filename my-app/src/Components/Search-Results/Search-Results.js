@@ -8,7 +8,8 @@ export default class SearchResults extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      filteredListings: []
+      filteredListings: [],
+      isLoading: true
     };
   }
 
@@ -21,15 +22,24 @@ export default class SearchResults extends React.Component {
     const { term } = this.props.match.params;
     const value = term.replace('-', ' ');
     ListingHelper.search(value).then(res => {
-      this.setState({ filteredListings: res });
+      this.setState({ filteredListings: res, isLoading: false });
     });
   }
+
+  // renders loading til fetch call returns
+  Loading = () => {
+    return this.state.isLoading ? (
+      <h3 className='Loading'>Loading...</h3>
+    ) : (
+      this.ifResults()
+    );
+  };
 
   // checks if theres results from the users search if no results it will display a message
   ifResults = () => {
     if (this.state.filteredListings.length > 0) {
       return this.state.filteredListings.map(listing => (
-        <div className='Results-item'>
+        <div className='Search-Results-item'>
           <Listing key={listing.id} {...listing} />
         </div>
       ));
@@ -48,7 +58,7 @@ export default class SearchResults extends React.Component {
         <header className='Search-Header'>
           <SearchField />
         </header>
-        <section className='Search-ResultsList'>{this.ifResults()}</section>
+        <section className='Search-ResultsList'>{this.Loading()}</section>
       </div>
     );
   }
