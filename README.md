@@ -6,6 +6,8 @@
 
 Smart Marketplace is a resell website for clothing where users can post or shopping active listings. Users have the ability to create accounts and post listings. Once a user creates his/her account they will have a profile page created where it will display their information plus their active listings if they have any. Users also have the ability to edit their account also their listings. If a user decides to delete their account it will delete all the listings associated to their account.
 
+> [Live App](https://smartmarketplace.app/)
+
 ## What did I use to build the app?
 
 > Front-End Tech: ReactJS, CSS
@@ -13,6 +15,16 @@ Smart Marketplace is a resell website for clothing where users can post or shopp
 > Back-End Tech: NodeJS, ExpressJS, KnexJS, PostgreSQL
 
 > Testing Tech: Mocha & Chai
+
+## Core Features
+
+> Ability to create/login with user accounts
+
+> Ability to create/edit/delete listings
+
+> Users can search by listing's titles
+
+> User profiles where users can showcase thei active listings
 
 ## Upcoming features
 

@@ -39,7 +39,7 @@ export default class SearchResults extends React.Component {
   ifResults = () => {
     if (this.state.filteredListings.length > 0) {
       return this.state.filteredListings.map(listing => (
-        <div className='Search-Results-item'>
+        <div className='Results-item'>
           <Listing key={listing.id} {...listing} />
         </div>
       ));
@@ -54,11 +54,11 @@ export default class SearchResults extends React.Component {
 
   render() {
     return (
-      <div className='Search-Results'>
+      <div className='RecentResults'>
         <header className='Search-Header'>
           <SearchField />
         </header>
-        <section className='Search-ResultsList'>{this.Loading()}</section>
+        <section className='flex-container'>{this.Loading()}</section>
       </div>
     );
   }
