@@ -16,15 +16,16 @@ export default class SearchResults extends React.Component {
     match: { params: {} }
   };
 
+  // on mount grabs url param and replaces the hyphen with a space then sends the value to helpers for the api call
   componentDidMount() {
     const { term } = this.props.match.params;
     const value = term.replace('-', ' ');
-    console.log(value);
     ListingHelper.search(value).then(res => {
       this.setState({ filteredListings: res });
     });
   }
 
+  // checks if theres results from the users search if no results it will display a message
   ifResults = () => {
     if (this.state.filteredListings.length > 0) {
       return this.state.filteredListings.map(listing => (
@@ -42,7 +43,6 @@ export default class SearchResults extends React.Component {
   };
 
   render() {
-    console.log(this.state.filteredListings);
     return (
       <div className='Search-Results'>
         <header className='Search-Header'>

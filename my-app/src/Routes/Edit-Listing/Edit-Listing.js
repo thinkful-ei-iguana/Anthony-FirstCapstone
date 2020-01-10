@@ -19,6 +19,7 @@ export default class CreateListing extends React.Component {
     this.state = {};
   }
 
+  // checks to see if the current user is the owner of the listing theyre attempting to edit
   ownerCheck = () => {
     if (this.context.currentUser.id !== this.state.owner) {
       return this.nonOwner();
@@ -27,6 +28,7 @@ export default class CreateListing extends React.Component {
     }
   };
 
+  // on mount checks if user has a auth token if not it pushes them to the login page, if they do then it grabs the listing id from url param then uses a helper function to get the listing data
   componentDidMount() {
     if (!this.context.hasAuthToken()) {
       this.props.history.push('/Login');
@@ -48,11 +50,13 @@ export default class CreateListing extends React.Component {
     });
   }
 
+  // if update was successful then pushes the user to the home page
   handleEditSuccess = () => {
     const { history } = this.props;
     history.push('/Home');
   };
 
+  // handles the change of data in the form
   handleChange = ev => {
     ev.preventDefault();
     this.setState({
@@ -60,6 +64,7 @@ export default class CreateListing extends React.Component {
     });
   };
 
+  // grabs the data from the form then uses a helper function to make the api patch request
   editSubmit = ev => {
     ev.preventDefault();
     const { title, price, condition, description, image, category } = ev.target;
@@ -90,10 +95,12 @@ export default class CreateListing extends React.Component {
       });
   };
 
+  // renders if the current user isnt the owner of the listing their trying to edit
   nonOwner = () => {
     return <h2>Sorry you're not the owner of this listing</h2>;
   };
 
+  // renders if the current user is the owner of the listing their trying to edit
   owner = () => {
     return (
       <div className='Edit-Listing'>

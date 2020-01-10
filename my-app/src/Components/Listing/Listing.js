@@ -3,6 +3,7 @@ import './Listing.css';
 import { Link } from 'react-router-dom';
 
 export default function Listing(props) {
+  // Shortens description if to long
   function truncateDesc(text) {
     const words = text.split('');
     if (words.length > 35) {
@@ -11,6 +12,7 @@ export default function Listing(props) {
     return text;
   }
 
+  // Shortens title if to long
   function truncateTitle(text) {
     const words = text.split('');
     if (words.length > 25) {
@@ -23,7 +25,9 @@ export default function Listing(props) {
     <Link to={`/listing/${props.id}`} className='ThingListItem'>
       <div
         className='ThingListItem__image'
-        style={{ backgroundImage: `url(${props.image})` }}
+        style={{
+          backgroundImage: `url(${props.image})`
+        }}
       />
 
       <div className='ThingListItem__details'>

@@ -11,6 +11,7 @@ export default class RecentResults extends React.Component {
     };
   }
 
+  // on mount it makes a api call to get all the active listings
   componentDidMount() {
     fetch(`${config.API_ENDPOINT}/listings`, {
       method: 'GET',

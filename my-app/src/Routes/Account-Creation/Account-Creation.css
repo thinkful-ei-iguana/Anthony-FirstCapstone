@@ -5,12 +5,14 @@
   justify-content: center;
   text-align: center;
   height: 100vh;
+  color: var(--text);
 }
 
 .Creation-Header h1 {
   font-weight: 100;
   text-align: center;
   margin-top: 180px;
+  color: var(--text) !important;
 }
 
 .Creation-Form {
@@ -45,6 +47,7 @@
   -moz-appearance: none;
   font-family: inherit;
   font-size: 1em;
+  color: var(--text);
 }
 
 .field__input:focus::-webkit-input-placeholder {
@@ -99,6 +102,7 @@ LEVEL 3. PRESENTATION STYLES
   font-size: var(--uiFieldFontSize);
   padding-top: 1em;
   margin-bottom: 50px;
+  color: var(--text) !important;
 }
 
 .a-field__input {

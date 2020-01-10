@@ -1,6 +1,7 @@
 import config from '../config';
 
 const AuthHelper = {
+  // api call the handles account creation
   createAccount(newAccount) {
     return fetch(`${config.API_ENDPOINT}/accounts`, {
       method: 'POST',
@@ -12,6 +13,7 @@ const AuthHelper = {
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
   },
+  // api call that handles delete account request
   deleteAccount(username) {
     return fetch(`${config.API_ENDPOINT}/accounts/${username}`, {
       method: 'DELETE',
@@ -20,6 +22,7 @@ const AuthHelper = {
       }
     });
   },
+  // api call that handles login request
   login(credentials) {
     return fetch(`${config.API_ENDPOINT}/auth/login`, {
       method: 'POST',
@@ -31,6 +34,7 @@ const AuthHelper = {
       return !res.ok ? res.json().then(e => Promise.reject(e)) : res.json();
     });
   },
+  // api call that handles get current user data request
   getCurrentUser(token) {
     return fetch(`${config.API_ENDPOINT}/accounts`, {
       method: 'GET',
@@ -44,6 +48,7 @@ const AuthHelper = {
         return data.dbUser;
       });
   },
+  // api call that handles get public account data request
   getPublicAccountData(username) {
     return fetch(`${config.API_ENDPOINT}/accounts/public/${username}`, {
       method: 'GET',
@@ -56,6 +61,7 @@ const AuthHelper = {
         return data.dbUser;
       });
   },
+  // api call that handles account update request
   updateAccount(updatedData, id) {
     return fetch(`${config.API_ENDPOINT}/accounts/edit/${id}`, {
       method: 'PATCH',

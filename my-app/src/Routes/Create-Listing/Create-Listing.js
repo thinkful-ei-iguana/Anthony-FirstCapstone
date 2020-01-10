@@ -13,12 +13,14 @@ export default class CreateListing extends React.Component {
     }
   };
 
+  // on mount checks to see if the user is logged in by checking their auth token
   componentDidMount() {
     if (!this.context.hasAuthToken()) {
       this.props.history.push('/Login');
     }
   }
 
+  // if listing creation was successful then pushes the user to the home page
   handleCreationSuccess = () => {
     const { history } = this.props;
     history.push('/Home');
@@ -26,6 +28,7 @@ export default class CreateListing extends React.Component {
 
   state = { error: null };
 
+  // takes the form data and uses a helper function to make the api post request
   createSubmit = ev => {
     ev.preventDefault();
     const { title, price, condition, description, image, category } = ev.target;

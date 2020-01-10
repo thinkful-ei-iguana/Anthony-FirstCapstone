@@ -8,6 +8,7 @@ export default class DesktopMenu extends React.Component {
   static contextType = Context;
 
   render() {
+    // toggles dark mode icon
     const LightModeToggle = this.context.isLight
       ? 'far fa-lightbulb fa-fw'
       : 'far fa-moon fa-fw';

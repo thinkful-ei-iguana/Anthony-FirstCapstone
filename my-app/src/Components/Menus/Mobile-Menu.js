@@ -10,6 +10,7 @@ export default class DesktopMenu extends React.Component {
     match: { params: {} }
   };
 
+  // handles nav menu search
   processSearch = e => {
     e.preventDefault();
     const { term } = e.target;
@@ -20,6 +21,7 @@ export default class DesktopMenu extends React.Component {
   };
 
   render() {
+    // toggles light mode icon
     const LightModeToggle = this.context.isLight
       ? 'far fa-moon fa-fw'
       : 'far fa-lightbulb fa-fw';

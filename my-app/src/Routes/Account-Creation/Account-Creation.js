@@ -11,6 +11,7 @@ export default class Login extends React.Component {
     }
   };
 
+  // if creation was successful then pushes user to login
   handleRegistrationSuccess = user => {
     const { history } = this.props;
     history.push('/login');
@@ -18,6 +19,7 @@ export default class Login extends React.Component {
 
   state = { error: null };
 
+  // takes all the form data and uses a helper function to send the post api call
   createSubmit = ev => {
     ev.preventDefault();
     const { name, email, location, username, password, image } = ev.target;
@@ -100,7 +102,7 @@ export default class Login extends React.Component {
               <span className='a-field__label'>Username</span>
             </span>
           </label>
-          <label className='field a-field a-field_a2'>
+          <label className='field a-field a-field_a2 passwordSection'>
             <input
               className='field__input a-field__input'
               required
@@ -112,6 +114,9 @@ export default class Login extends React.Component {
               <span className='a-field__label'>Password</span>
             </span>
           </label>
+          <span className='passwordHint'>
+            Must include 1 Uppercase, 1 Lowercase, 1 Special Character
+          </span>
           <label className='field a-field a-field_a2'>
             <input
               className='field__input a-field__input'

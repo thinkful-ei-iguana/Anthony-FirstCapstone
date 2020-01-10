@@ -1,6 +1,7 @@
 import config from '../config';
 
 const ListingHelper = {
+  // api call that handles create listing request
   createListing(newListing) {
     return fetch(`${config.API_ENDPOINT}/listings`, {
       method: 'POST',
@@ -12,6 +13,7 @@ const ListingHelper = {
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
   },
+  // api call that handles getting a specific listing's data
   listingById(id) {
     return fetch(`${config.API_ENDPOINT}/listings/${id}`, {
       method: 'GET',
@@ -22,6 +24,7 @@ const ListingHelper = {
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
   },
+  // api call that handles getting the owner's data of a listing
   getListingOwnerData(ownerid) {
     return fetch(`${config.API_ENDPOINT}/listings/owner/${ownerid}`, {
       method: 'GET',
@@ -32,6 +35,7 @@ const ListingHelper = {
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
   },
+  // handles the search request for listings
   search(term) {
     return fetch(`${config.API_ENDPOINT}/listings/search/${term}`, {
       method: 'GET',
@@ -42,6 +46,7 @@ const ListingHelper = {
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
   },
+  // handles the delete request for listings
   delete(id) {
     return fetch(`${config.API_ENDPOINT}/listings/${id}`, {
       method: 'DELETE',
@@ -50,6 +55,7 @@ const ListingHelper = {
       }
     });
   },
+  // api call to get all of a specific users listings
   getAllMyListings(id) {
     return fetch(`${config.API_ENDPOINT}/listings/user/${id}`, {
       method: 'GET',
@@ -60,6 +66,7 @@ const ListingHelper = {
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
   },
+  // api call for update request for listings
   updateListing(updatedData, id) {
     return fetch(`${config.API_ENDPOINT}/listings/edit/${id}`, {
       method: 'PATCH',
@@ -70,11 +77,6 @@ const ListingHelper = {
       body: JSON.stringify(updatedData)
     });
   }
-
-  // get listing by owner
-  // post listing
-  // patch listing
-  // delete listing
 };
 
 export default ListingHelper;

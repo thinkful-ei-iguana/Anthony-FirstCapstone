@@ -19,11 +19,17 @@
   -ms-flex-align: flex-start;
   align-items: flex-start;
   height: 100vh;
-  margin-top: 100px;
+  padding-top: 100px;
+}
+
+.item-owner {
+  color: #f2912b;
+  display: inline;
 }
 
 .section {
   width: 80%;
+  color: var(--text);
 }
 
 .owner span,

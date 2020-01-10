@@ -28,6 +28,7 @@ class App extends React.Component {
     };
   }
 
+  // checks if the user has an auth token, if the user does have an auth token then it gets their auth token and uses a helper function to make a api call to get the current users data
   componentDidMount() {
     if (this.hasAuthToken()) {
       AuthHelper.getCurrentUser(this.getAuthToken()).then(data =>
@@ -39,19 +40,27 @@ class App extends React.Component {
     }
   }
 
+  // saves the users auth token to local storage
   saveAuthToken = token => {
     window.localStorage.setItem(config.TOKEN_KEY, token);
   };
+
+  // gets the users auth token
   getAuthToken = () => {
     return window.localStorage.getItem(config.TOKEN_KEY);
   };
+
+  // checks if the user has an auth token
   hasAuthToken = () => {
     return !!this.getAuthToken();
   };
+
+  // creates a auth token
   makeBasicAuthToken = (userName, password) => {
     return window.btoa(`${userName}:${password}`);
   };
 
+  // on login gets the users data and sets the loggedin status to true
   onLogin = () => {
     AuthHelper.getCurrentUser(this.getAuthToken()).then(data =>
       this.setState(prevState => ({
@@ -61,11 +70,13 @@ class App extends React.Component {
     );
   };
 
+  // on logout clears the users auth token and sets the loggedin status to false
   onLogout = () => {
     window.localStorage.removeItem(config.TOKEN_KEY);
     this.setState({ currentUser: {}, isLoggedIn: false });
   };
 
+  // toggles the light mode status
   toggleLightMode = () => {
     this.setState(prevState => ({
       isLight: !prevState.isLight

@@ -53,7 +53,11 @@
   -ms-flex-align: flex-start;
   align-items: flex-start;
   height: 100vh;
-  margin-top: 100px;
+  padding-top: 100px;
+}
+
+.profile-email {
+  color: #f2912b;
 }
 
 .editAccount,
@@ -156,6 +160,7 @@
 
 .noListing {
   text-align: center;
+  color: var(--text);
 }
 
 .section:nth-child(1) {

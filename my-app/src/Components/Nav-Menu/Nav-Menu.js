@@ -6,6 +6,7 @@ import MobileMenu from '../Menus/Mobile-Menu';
 import DesktopMenu from '../Menus/Desktop-Menu';
 import Context from '../Context/Context';
 
+// checks users viewport width to see which menu to render
 function isMobile() {
   if (window.innerWidth < 1200) {
     return true;
@@ -23,6 +24,7 @@ export default class NavMenu extends React.Component {
     };
   }
 
+  // toogles mobile menu open/close
   toggleMenu = () => {
     this.setState(prevState => ({ open: !prevState.open }));
   };

@@ -9,6 +9,7 @@ export default class SearchField extends React.Component {
     }
   };
 
+  // handles main search component functionality
   processSearch = e => {
     e.preventDefault();
     const { term } = e.target;

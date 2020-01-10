@@ -18,6 +18,7 @@ export default class DetailedView extends React.Component {
     match: { params: {} }
   };
 
+  // on mount gets the listing id from the url param then uses a helper function to make a api call for the listing data then once it gets the res it uses the owner value to pull the owner data so it can render it
   componentDidMount() {
     const { listingid } = this.props.match.params;
     ListingHelper.listingById(listingid).then(
@@ -31,12 +32,13 @@ export default class DetailedView extends React.Component {
     );
   }
 
+  // handles the delete buton functionality
   deleteListing = () => {
     ListingHelper.delete(this.props.match.params.listingid).then(
       this.props.history.push('/Home')
     );
   };
-
+  // checks if the current user's id matchs the listing owner
   ownerOption = () => {
     if (this.context.currentUser.id === this.state.listing.owner) {
       return (
@@ -55,6 +57,7 @@ export default class DetailedView extends React.Component {
     }
   };
 
+  // checks the url param id to see if its a valid listing if not renders a error message informing the user
   ifVaildListing = () => {
     if (this.state.listing.id > 0) {
       return (

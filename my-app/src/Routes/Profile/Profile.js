@@ -21,6 +21,7 @@ export default class DetailedView extends React.Component {
     match: { params: {} }
   };
 
+  // shortens the description of the listings
   truncate = text => {
     const words = text.split(' ');
     if (words.length > 2) {
@@ -29,6 +30,7 @@ export default class DetailedView extends React.Component {
     return text;
   };
 
+  // gets the profile username from the url param then uses a helper function to get the profiles data once that response returns then it will use the profile id to make another request to grab thei active listings
   componentDidMount() {
     AuthHelper.getPublicAccountData(this.props.match.params.username).then(
       data =>
@@ -42,12 +44,14 @@ export default class DetailedView extends React.Component {
     );
   }
 
+  // handles the delete account button
   deleteAccount = () => {
     AuthHelper.deleteAccount(this.context.currentUser.username)
       .then(this.context.onLogout)
       .then(this.props.history.push('/Home'));
   };
 
+  // checks if current user id matches the profile owner id if so it renders the edit/delete buttons, if not it doesnt render the buttons
   accountOption = () => {
     if (
       this.context.currentUser.username === this.props.match.params.username
@@ -65,6 +69,7 @@ export default class DetailedView extends React.Component {
     }
   };
 
+  // checks if the username from url param has an id if so it renders the profile, if not it renders a error message
   ifValidProfile = () => {
     if (this.state.profileData.id > 0) {
       return (
@@ -120,6 +125,7 @@ export default class DetailedView extends React.Component {
     }
   };
 
+  // renders the profile owners listings
   renderListing = () => {
     return this.state.myListings.map(listing => {
       return (
@@ -132,6 +138,7 @@ export default class DetailedView extends React.Component {
     });
   };
 
+  // if the profile owner has no listings it will render this error message
   renderNoListing = () => {
     return (
       <h3 className='noListing'>

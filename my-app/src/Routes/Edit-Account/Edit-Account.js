@@ -18,6 +18,7 @@ export default class Login extends React.Component {
     this.state = {};
   }
 
+  // handles the change in values of the form
   handleChange = ev => {
     ev.preventDefault();
     this.setState({
@@ -25,6 +26,7 @@ export default class Login extends React.Component {
     });
   };
 
+  // on mount checks if the user has an auth token if not sends them to the login page, if the do it stores their information
   componentDidMount() {
     if (!this.context.hasAuthToken()) {
       this.props.history.push('/Login');
@@ -39,6 +41,7 @@ export default class Login extends React.Component {
     }
   }
 
+  // if update is successful it logs out the user and sends them to the login page
   handleRegistrationSuccess = user => {
     const { history } = this.props;
     this.context.onLogout();
@@ -47,6 +50,7 @@ export default class Login extends React.Component {
 
   state = { error: null };
 
+  // takes the data from the form and uses a helper function to make a api patch request
   createSubmit = ev => {
     ev.preventDefault();
     const { name, email, location, username, password, image } = ev.target;

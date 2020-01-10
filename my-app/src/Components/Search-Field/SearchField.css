@@ -45,6 +45,7 @@ LEVEL 1. RESET STYLES
   -moz-appearance: none;
   font-family: inherit;
   font-size: 1em;
+  color: var(--text);
 }
 
 .field__input:focus::-webkit-input-placeholder {
@@ -98,6 +99,7 @@ LEVEL 3. PRESENTATION STYLES
   font-size: var(--uiFieldFontSize);
   padding-top: 1em;
   display: inline-block !important;
+  color: var(--text) !important;
 }
 
 .a-field__input {

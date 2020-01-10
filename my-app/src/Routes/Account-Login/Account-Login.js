@@ -15,12 +15,14 @@ export default class Login extends React.Component {
 
   state = { error: null };
 
+  // if login was succesful then pushes user to the home page
   onLoginSuccess = () => {
     const { location, history } = this.props;
     const destination = (location.state || {}).from || '/Home';
     history.push(destination);
   };
 
+  // takes the form data and uses a helper function to make a api request to see if the login credentials were valid
   loginSubmit = e => {
     e.preventDefault();
     this.setState({ error: null });

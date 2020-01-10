@@ -10,6 +10,7 @@ class NavSearch extends React.Component {
     }
   };
 
+  // handles nav menu search
   processSearch = e => {
     e.preventDefault();
     const { term } = e.target;
