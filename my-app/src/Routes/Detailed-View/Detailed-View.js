@@ -22,19 +22,15 @@ export default class DetailedView extends React.Component {
   // on mount gets the listing id from the url param then uses a helper function to make a api call for the listing data then once it gets the res it uses the owner value to pull the owner data so it can render it
   componentDidMount() {
     const { listingid } = this.props.match.params;
-    ListingHelper.listingById(listingid)
-      .then(
-        listingData =>
-          this.setState({
-            listing: listingData
-          }) +
-          ListingHelper.getListingOwnerData(listingData.owner).then(
-            ownerData => {
-              this.setState({ owner: ownerData });
-            }
-          )
-      )
-      .then(this.setState({ isLoading: false }));
+    ListingHelper.listingById(listingid).then(
+      listingData =>
+        this.setState({
+          listing: listingData
+        }) +
+        ListingHelper.getListingOwnerData(listingData.owner).then(ownerData => {
+          this.setState({ owner: ownerData, isLoading: false });
+        })
+    );
   }
 
   // handles the delete buton functionality
