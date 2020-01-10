@@ -9,7 +9,8 @@ export default class DetailedView extends React.Component {
     super(props);
     this.state = {
       listing: {},
-      owner: {}
+      owner: {},
+      isLoading: true
     };
   }
 
@@ -21,15 +22,19 @@ export default class DetailedView extends React.Component {
   // on mount gets the listing id from the url param then uses a helper function to make a api call for the listing data then once it gets the res it uses the owner value to pull the owner data so it can render it
   componentDidMount() {
     const { listingid } = this.props.match.params;
-    ListingHelper.listingById(listingid).then(
-      listingData =>
-        this.setState({
-          listing: listingData
-        }) +
-        ListingHelper.getListingOwnerData(listingData.owner).then(ownerData => {
-          this.setState({ owner: ownerData });
-        })
-    );
+    ListingHelper.listingById(listingid)
+      .then(
+        listingData =>
+          this.setState({
+            listing: listingData
+          }) +
+          ListingHelper.getListingOwnerData(listingData.owner).then(
+            ownerData => {
+              this.setState({ owner: ownerData });
+            }
+          )
+      )
+      .then(this.setState({ isLoading: false }));
   }
 
   // handles the delete buton functionality
@@ -55,6 +60,15 @@ export default class DetailedView extends React.Component {
         </div>
       );
     }
+  };
+
+  // renders loading til fetch call returns
+  Loading = () => {
+    return this.state.isLoading ? (
+      <h3 className='Loading'>Loading...</h3>
+    ) : (
+      this.ifVaildListing()
+    );
   };
 
   // checks the url param id to see if its a valid listing if not renders a error message informing the user
@@ -122,6 +136,6 @@ export default class DetailedView extends React.Component {
   };
 
   render() {
-    return <div>{this.ifVaildListing()}</div>;
+    return <div>{this.Loading()}</div>;
   }
 }

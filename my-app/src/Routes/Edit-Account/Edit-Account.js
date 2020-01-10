@@ -44,6 +44,7 @@ export default class Login extends React.Component {
   // if update is successful it logs out the user and sends them to the login page
   handleRegistrationSuccess = user => {
     const { history } = this.props;
+
     this.context.onLogout();
     history.push('/login');
   };
@@ -76,13 +77,14 @@ export default class Login extends React.Component {
       },
       this.context.currentUser.id
     )
-      .then(this.handleRegistrationSuccess())
       .catch(res => {
         this.setState({ error: res.error });
-      });
+      })
+      .then(this.handleRegistrationSuccess());
   };
 
   render() {
+    console.log(this.state);
     return (
       <div className='Edit-Account'>
         <header className='Edit-Account-Header'>

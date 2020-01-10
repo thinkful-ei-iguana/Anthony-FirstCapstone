@@ -119,6 +119,12 @@ accountRouter.patch('/edit/:id', bodyParser, async (req, res, next) => {
     avatar
   };
 
+  if (id == 2) {
+    return res.status(400).json({
+      error: "Sorry I can't alter demo accounts credentials"
+    });
+  }
+
   const numberOfValues = Object.values(updatedData).filter(Boolean).length;
   if (numberOfValues === 0) {
     return res.status(400).json({

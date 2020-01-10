@@ -70,6 +70,8 @@ const AuthHelper = {
         Authorization: `Bearer ${config.TOKEN_KEY}`
       },
       body: JSON.stringify(updatedData)
+    }).then(res => {
+      return !res.ok ? res.json().then(e => Promise.reject(e)) : res.json();
     });
   }
 };
