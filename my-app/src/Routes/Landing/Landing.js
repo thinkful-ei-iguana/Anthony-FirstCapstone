@@ -85,13 +85,16 @@ export default class Landing extends React.Component {
           <h3 className='Connect-H3'>Connect With Me</h3>
           <hr className='Connect-Divider' />
           <div className='buttons'>
-            <a href='https://github.com' target='blank_'>
+            <a
+              href='https://github.com/thinkful-ei-iguana/Anthony-FirstCapstone'
+              target='blank_'
+            >
               <i className='fab fa-github'></i>
             </a>
-            <a href='https://github.com' target='blank_'>
+            <a href='https://www.linkedin.com/in/anthonytb/' target='blank_'>
               <i className='fab fa-linkedin-in'></i>
             </a>
-            <a href='https://github.com' target='blank_'>
+            <a href='https://anthonyb.dev/' target='blank_'>
               <i className='fas fa-desktop'></i>
             </a>
           </div>
