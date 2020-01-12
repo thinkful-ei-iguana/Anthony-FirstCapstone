@@ -202,7 +202,6 @@ listingRouter.patch('/edit/:id', bodyParser, (req, res, next) => {
 
   MarketplaceService.updateListing(knexInstance, id, updatedData)
     .then(update => {
-      console.log(update);
       res.status(204).end();
     })
     .catch(next);

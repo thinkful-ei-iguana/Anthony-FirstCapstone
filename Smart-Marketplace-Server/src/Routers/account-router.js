@@ -157,15 +157,12 @@ accountRouter.patch('/edit/:id', bodyParser, async (req, res, next) => {
       });
     }
     await AccountService.hashPassword(password).then(hashedPassword => {
-      console.log(password);
       updatedData.password = hashedPassword;
     });
   }
 
-  console.log(updatedData);
   return AccountService.updateAccount(knexInstance, id, updatedData).then(
     update => {
-      console.log(update, 'update ran');
       res.status(204).json(AccountService.serializeUser(update));
     }
   );
