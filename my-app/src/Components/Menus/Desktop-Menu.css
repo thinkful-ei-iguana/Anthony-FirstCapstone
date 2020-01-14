@@ -172,4 +172,8 @@
   .dropdown:hover .dropdown-content {
     display: block;
   }
+
+  .mobileMenu {
+    display: none;
+  }
 }

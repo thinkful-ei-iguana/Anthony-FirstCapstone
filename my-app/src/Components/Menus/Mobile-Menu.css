@@ -1,4 +1,4 @@
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1024px) {
   * {
     margin: 0;
     padding: 0;
@@ -183,4 +183,7 @@
   }
 
   /* End Dark/Light Toggle */
+  .desktopMenu {
+    display: none;
+  }
 }

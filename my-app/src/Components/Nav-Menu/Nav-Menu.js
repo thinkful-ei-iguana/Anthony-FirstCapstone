@@ -6,14 +6,6 @@ import MobileMenu from '../Menus/Mobile-Menu';
 import DesktopMenu from '../Menus/Desktop-Menu';
 import Context from '../Context/Context';
 
-// checks users viewport width to see which menu to render
-function isMobile() {
-  if (window.innerWidth < 1200) {
-    return true;
-  }
-  return false;
-}
-
 export default class NavMenu extends React.Component {
   static contextType = Context;
 
@@ -42,22 +34,19 @@ export default class NavMenu extends React.Component {
         <button className='Open-Menu' onClick={this.toggleMenu}>
           <i className='fas fa-bars'></i>
         </button>
-        {isMobile() ? (
-          <MobileMenu
-            id='MobileMenu'
-            state={this.state}
-            mobileToggle={this.toggleMenu}
-            renderLoginLink={this.renderLoginLink}
-            renderLogoutLink={this.renderLogoutLink}
-          />
-        ) : (
-          <DesktopMenu
-            state={this.state}
-            LightMode={this.toggleLightMode}
-            renderLoginLink={this.renderLoginLink}
-            renderLogoutLink={this.renderLogoutLink}
-          />
-        )}
+        <MobileMenu
+          id='MobileMenu'
+          state={this.state}
+          mobileToggle={this.toggleMenu}
+          renderLoginLink={this.renderLoginLink}
+          renderLogoutLink={this.renderLogoutLink}
+        />
+        <DesktopMenu
+          state={this.state}
+          LightMode={this.toggleLightMode}
+          renderLoginLink={this.renderLoginLink}
+          renderLogoutLink={this.renderLogoutLink}
+        />
       </header>
     );
   }

@@ -8,6 +8,12 @@ Smart Marketplace is a resell website for clothing where users can post or shopp
 
 > [Live App](https://smartmarketplace.app/)
 
+> Demo Credentials
+
+    Username: Demo
+
+    Password: Demo123!
+
 ## What did I use to build the app?
 
 > Front-End Tech: ReactJS, CSS
@@ -31,6 +37,10 @@ Smart Marketplace is a resell website for clothing where users can post or shopp
 > Favorite System for listings
 
 > Integrating InstantSearch
+
+## Server-Side Details
+
+> The back-end server consist of a Node api and postgres database. So when a helper function is called on the front-end it makes a fetch call to my api. Then the api processes the task because upon whatever the fetch route was. The api then uses Knex to make sql queries to the postgres database. The api then sends a response back to the front-end.
 
 ## Connect with me
 

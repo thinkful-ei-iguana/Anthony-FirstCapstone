@@ -173,18 +173,6 @@ section h2 {
     align-self: center;
   }
 
-  .flex-item:nth-child(2) {
-    -webkit-order: 0;
-    -ms-flex-order: 0;
-    order: 0;
-    -webkit-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
-    flex: 0 1 auto;
-    -webkit-align-self: center;
-    -ms-flex-item-align: center;
-    align-self: center;
-  }
-
   .Landing-Logo {
     width: 70%;
     margin-top: 0;
@@ -230,5 +218,6 @@ section h2 {
   .Branding {
     position: absolute;
     left: 15%;
+    z-index: 10;
   }
 }
