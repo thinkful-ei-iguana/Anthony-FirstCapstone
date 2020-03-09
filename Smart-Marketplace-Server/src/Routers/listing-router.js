@@ -164,7 +164,7 @@ listingRouter.route('/').post(bodyParser, (req, res, next) => {
       res
         .status(201)
         .location(path.posix.join(req.originalUrl, `/${listing.id}`))
-        .json(listing);
+        .json(MarketplaceService.serializeListing(listing));
     })
     .catch(next);
 });

@@ -1,3 +1,5 @@
+const xss = require('xss');
+
 const MarketplaceService = {
   getAllListings(knex) {
     return knex('listings').select('*');
@@ -44,6 +46,21 @@ const MarketplaceService = {
       .where('id', listingid)
       .update('page_views', newVal)
       .returning('*');
+  },
+  serializeListing(listing) {
+    return {
+      id: listing.id,
+      title: xss(listing.title),
+      category: xss(listing.category),
+      owner: xss(listing.owner),
+      price: xss(listing.price),
+      date_created: new Date(listing.date_created),
+      condition: xss(listing.condition),
+      location: xss(listing.location),
+      image: xss(listing.image),
+      description: xss(listing.description),
+      page_views: xss(listing.page_views)
+    };
   }
 };
 
